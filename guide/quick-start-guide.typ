@@ -16,6 +16,20 @@
 #let muted = rgb("#666666")
 #let code-bg = rgb("#1e1e1e")
 #let code-fg = rgb("#d4d4d4")
+#let frame-color = rgb("#e5e5e5")
+
+// Helper for framed, centered images
+#let framed-image(path, img-width: 100%) = {
+  align(center)[
+    #block(
+      stroke: 1pt + frame-color,
+      radius: 6pt,
+      clip: true,
+    )[
+      #image(path, width: img-width)
+    ]
+  ]
+}
 
 // ============================================
 // COVER PAGE
@@ -228,7 +242,7 @@ Open Obsidian and select this folder as a vault. When prompted, click *Trust aut
 
 #v(0.5cm)
 
-#image("screenshots/01-vault-open.png", width: 100%)
+#framed-image("screenshots/01-vault-open.png")
 
 #v(0.5cm)
 
@@ -295,7 +309,7 @@ Open your terminal, navigate to the vault folder, and start Claude:
 
 #v(0.5cm)
 
-#image("screenshots/02-claude-started.png", width: 100%)
+#framed-image("screenshots/02-claude-started.png")
 
 #v(0.5cm)
 
@@ -335,7 +349,7 @@ Claude queries your vault and returns a formatted table:
 
 #v(0.3cm)
 
-#image("screenshots/02-query-goals-terminal.png", width: 100%)
+#framed-image("screenshots/02-query-goals-terminal.png")
 
 #v(0.8cm)
 
@@ -343,7 +357,7 @@ Now look at the *same data* in Obsidian (Templates/Bases/Goals):
 
 #v(0.3cm)
 
-#image("screenshots/03-query-goals-obsidian.png", width: 100%)
+#framed-image("screenshots/03-query-goals-obsidian.png")
 
 #v(0.5cm)
 
@@ -390,7 +404,7 @@ Now try creating a task. Just describe what you need:
 
 #v(0.5cm)
 
-#image("screenshots/04-task-created.png", width: 100%)
+#framed-image("screenshots/04-task-created.png")
 
 #v(0.5cm)
 
@@ -407,7 +421,7 @@ To see it on the Kanban board, open the command palette (Cmd+P) and search "kanb
 
 #v(0.3cm)
 
-#image("screenshots/05-open-kanban-command.png", width: 70%)
+#framed-image("screenshots/05-open-kanban-command.png", img-width: 70%)
 
 #v(0.5cm)
 
@@ -415,7 +429,7 @@ Your task is right there, scheduled and ready:
 
 #v(0.3cm)
 
-#image("screenshots/06-kanban-board.png", width: 100%)
+#framed-image("screenshots/06-kanban-board.png")
 
 #v(0.8cm)
 
@@ -581,7 +595,7 @@ After the check-in, Claude creates a note in `Daily/` with your responses:
 // ============================================
 
 #text(size: 20pt, weight: "bold")[
-  What's Possible
+  Automate Your Entire Workflow
 ]
 
 #v(0.5cm)
@@ -590,7 +604,7 @@ After the check-in, Claude creates a note in `Daily/` with your responses:
 
 #v(0.8cm)
 
-The starter kit is just the beginning. With custom skills, Claude can automate entire workflows.
+The starter kit is just the beginning. With custom skills, you can automate entire parts of your day — hands-free.
 
 #v(0.5cm)
 
@@ -600,15 +614,15 @@ Claude tracks your work throughout the day and generates a visual report:
 
 #v(0.3cm)
 
-#image("screenshots/07-day-review.png", width: 85%)
+#framed-image("screenshots/07-day-review.png", img-width: 85%)
 
 #v(0.5cm)
 
-Then sends it to you automatically via Telegram:
+Then sends it to you automatically — no manual step required:
 
 #v(0.3cm)
 
-#image("screenshots/08-telegram-report.png", width: 75%)
+#framed-image("screenshots/08-telegram-report.png", img-width: 75%)
 
 #v(0.8cm)
 
@@ -617,21 +631,24 @@ Then sends it to you automatically via Telegram:
   inset: 14pt,
   radius: 6pt,
 )[
+  #text(size: 10pt, weight: "medium")[
+    What you can automate:
+  ]
+  #v(0.3cm)
   #text(size: 10pt)[
-    *The possibilities:*
-    - Morning briefs with sleep data, calendar, and priorities
-    - Email processing and drafting responses
-    - Meeting prep with context from your notes
-    - Weekly reviews aggregating your progress
-    - Business automation: invoices, reports, client updates
+    - Morning briefs with weather, calendar, and priorities \
+    - Email triage and draft responses \
+    - Meeting prep with context from your notes \
+    - Weekly reviews aggregating your progress \
+    - Client reports, invoices, status updates
   ]
 ]
 
 #v(0.5cm)
 
 #align(center)[
-  #text(size: 10pt, fill: muted)[
-    If you can describe it, Claude can probably do it.
+  #text(size: 11pt, fill: muted)[
+    If you can describe it, Claude can probably automate it.
   ]
 ]
 
@@ -661,12 +678,6 @@ Make sure Obsidian is open with this vault. The skills communicate with Obsidian
 
 Make sure you ran `claude .` (with the dot) from inside the vault folder. The dot tells Claude to load skills from `.claude/skills/`.
 
-#v(0.8cm)
-
-=== Queries return no results
-
-Check that the folder has files. The starter kit includes sample goals and tasks — if you deleted them, the queries will be empty.
-
 #v(2cm)
 
 #align(center)[
@@ -677,11 +688,11 @@ Check that the folder has files. The starter kit includes sample goals and tasks
     width: 85%,
   )[
     #text(size: 11pt)[
-      *Want to build your own skills?*
+      *Want to build your own automations?*
       
       #v(0.3cm)
       
-      Join the workshop to create custom workflows for your specific needs.
+      Join the workshop to create custom skills for your specific workflows.
       
       #v(0.3cm)
       

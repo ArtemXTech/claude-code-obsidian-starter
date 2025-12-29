@@ -13,11 +13,11 @@
             "state": {
               "type": "bases",
               "state": {
-                "file": "Templates/Bases/Tasks.base",
-                "viewName": "Active Tasks"
+                "file": "Templates/Bases/Goals.base",
+                "viewName": "Current"
               },
               "icon": "lucide-table",
-              "title": "Tasks"
+              "title": "Goals"
             }
           }
         ]
@@ -193,11 +193,18 @@
   },
   "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
+    "guide/screenshots/04-task-created.png",
+    "guide/screenshots/03-query-goals-obsidian.png",
+    "guide/screenshots/02-query-goals-terminal.png",
+    "guide/screenshots/01-vault-open.png",
+    "CLAUDE.md",
+    "README.md",
+    "Templates/Bases/Tasks.base",
+    "Tasks/Prepare for client meeting.md",
     "Tasks/Test task from CLI.md",
     "Tasks/prepare-for-client-meeting.md",
     "Goals/Test Goal.md",
     "Tasks/Plan long run route.md",
-    "Templates/Bases/Tasks.base",
     "Templates/Bases/Meetings.base",
     "Templates/Bases/Journals.base",
     "Templates/Bases/Goals.base",

@@ -293,23 +293,13 @@ Open your terminal, navigate to the vault folder, and start Claude:
   ]
 ]
 
-#v(0.8cm)
+#v(0.5cm)
 
-The `.` is important — it tells Claude to load skills from this folder. Claude will read `CLAUDE.md` and understand the vault structure.
-
-#v(1cm)
-
-=== What Happens Next
-
-When you type a request, Claude:
-1. Understands your intent (natural language)
-2. Chooses the right skill (query, tasknotes, etc.)
-3. Reads from or writes to your Obsidian vault
-4. Reports back what it did
+#image("screenshots/02-claude-started.png", width: 100%)
 
 #v(0.5cm)
 
-The magic is that Claude sees the *same data* you see in Obsidian. Let's prove it.
+You'll see the Claude Code logo and a prompt. The path shows you're in the starter kit folder. Now you're ready to talk to your vault.
 
 #pagebreak()
 

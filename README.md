@@ -9,26 +9,26 @@ A working Obsidian vault with Claude Code skills pre-configured. Open it, try a 
 ```bash
 # Clone this repo (or download zip)
 git clone https://github.com/ArtemXTech/claude-code-obsidian-starter.git
-
-# Open in Obsidian
-# File → Open Vault → Select this folder
-
-# Open in Claude Code
-cd claude-code-obsidian-starter
-claude .
 ```
 
-### 2. Setup TaskNotes (2 minutes)
+### 2. Open in Obsidian
 
-1. In Obsidian, go to **Settings → Community Plugins → TaskNotes**
-2. Enable **HTTP API**
-3. Copy the **API Token**
-4. Create `.env` file in vault root:
-   ```
-   TASKNOTES_API_KEY=paste_your_token_here
-   ```
+- File → Open Vault → Select this folder
+- Click **Trust author and enable plugins** when prompted
 
-### 3. Try These Commands
+### 3. Start Claude Code
+
+```bash
+cd claude-code-obsidian-starter
+claude
+```
+
+### 4. Try These Commands
+
+```
+"Show my goals"
+```
+Lists all your goals in a table.
 
 ```
 "Create a task: Review the workshop feedback, high priority"
@@ -36,51 +36,47 @@ claude .
 Creates a task file in Obsidian instantly.
 
 ```
-"Show my tasks"
+"Start my morning"
 ```
-Lists all your tasks in a table.
-
-```
-"What should I work on?"
-```
-Shows your in-progress tasks.
+Runs the morning routine workflow.
 
 ## What's Included
 
-### Skills (AI capabilities)
+### Skills
 | Skill | What It Does |
 |-------|--------------|
-| tasknotes | Create, update, list, delete tasks |
-| morning-routine | Daily overview + create daily note |
+| 🔍 query | Read goals, tasks, notes |
+| ✅ tasknotes | Create & manage tasks |
+| ☀️ morning-routine | Daily planning workflow |
 
-### Obsidian Plugins (pre-installed)
-- TaskNotes - Task management with HTTP API
-- Dataview - Query your notes like a database
+### Plugins (pre-installed)
+- TaskNotes — Task management with Kanban board
+- Dataview — Query your notes
+- headless-bases — Lets Claude talk to Obsidian
 
 ### Folder Structure
 ```
 ├── Daily/           # Daily notes
-├── Tasks/           # Your tasks (auto-managed)
+├── Tasks/           # Your tasks
 ├── Goals/           # Goal tracking
-├── Templates/Bases/ # Tasks.base, Goals.base
-└── .claude/skills/  # AI skills
+├── Templates/Bases/ # Structured data views
+└── .claude/skills/  # Claude Code skills
 ```
 
 ## Full Guide
 
-See `guide/quick-start-guide.pdf` for detailed setup instructions.
+See `guide/quick-start-guide.pdf` for detailed setup with screenshots.
 
 ## Want More?
 
 This starter kit is a taste of what's possible.
 
-Join the workshop to build your complete Personal AI System:
-- Custom skills for your workflow
-- Calendar integration
-- Morning briefings
-
+**Workshop (Jan 3-4):** Build your complete Personal AI System
 https://workshop.artemzhutov.com
+
+**Lab (Jan 27):** Build advanced skills with the community
+https://lab.artemzhutov.com
 
 ---
 
-Made by Artem Zhutov - https://www.youtube.com/@ArtemXTech
+Made by [Artem Zhutov](https://x.com/ArtemXTech) · [YouTube](https://www.youtube.com/@ArtemXTech) · [Community](https://discord.gg/g5Z4Wk2fDk)

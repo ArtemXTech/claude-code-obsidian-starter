@@ -1,32 +1,40 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["requests", "python-dotenv"]
-# ///
+#!/usr/bin/env python3
 """
 tasknotes - Manage Obsidian tasks via TaskNotes plugin API.
 
 Human-friendly output with --table, JSON by default.
+No external dependencies - uses only Python stdlib.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 import argparse
 import json
 import os
 import sys
 import urllib.parse
+import urllib.request
+import urllib.error
 from pathlib import Path
 
-import requests
-from dotenv import load_dotenv
+
+def load_env(path: Path):
+    """Parse .env file and set environment variables."""
+    if not path.exists():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith('#') and '=' in line:
+            key, value = line.split('=', 1)
+            # Remove quotes if present
+            value = value.strip().strip('"').strip("'")
+            os.environ.setdefault(key.strip(), value)
 
 
 def find_env_file() -> Path | None:
-    """Find .env file: check symlink path first, then fall back to ~/.config"""
-    # Walk up from the symlink location (not resolved path)
-    symlink_path = Path(__file__).parent
-    for parent in [symlink_path] + list(symlink_path.parents):
+    """Find .env file: check current dir and parents."""
+    current = Path(__file__).parent
+    for parent in [current] + list(current.parents):
         env_file = parent / ".env"
         if env_file.exists():
             return env_file
@@ -37,9 +45,10 @@ def find_env_file() -> Path | None:
     return None
 
 
+# Load environment
 env_file = find_env_file()
 if env_file:
-    load_dotenv(env_file)
+    load_env(env_file)
 
 API_KEY = os.getenv("TASKNOTES_API_KEY")
 API_PORT = os.getenv("TASKNOTES_API_PORT", "8080")
@@ -54,21 +63,31 @@ def get_headers():
 
 
 def api_request(method: str, endpoint: str, params: dict = None, data: dict = None):
-    """Make API request and return JSON response."""
+    """Make API request using urllib (stdlib)."""
     url = f"{BASE_URL}{endpoint}"
+    
+    if params:
+        url += "?" + urllib.parse.urlencode(params)
+    
+    headers = get_headers()
+    body = None
+    if data:
+        body = json.dumps(data).encode('utf-8')
+    
+    req = urllib.request.Request(url, data=body, headers=headers, method=method)
+    
     try:
-        response = requests.request(
-            method, url, headers=get_headers(), params=params, json=data, timeout=10
-        )
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.ConnectionError:
-        return {"error": "Cannot connect to TaskNotes API. Is Obsidian running with TaskNotes enabled?"}
-    except requests.exceptions.HTTPError as e:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return json.loads(resp.read().decode('utf-8'))
+    except urllib.error.URLError as e:
+        if hasattr(e, 'reason'):
+            return {"error": f"Cannot connect to TaskNotes API: {e.reason}. Is Obsidian running?"}
+        return {"error": str(e)}
+    except urllib.error.HTTPError as e:
         try:
-            return response.json()
+            return json.loads(e.read().decode('utf-8'))
         except:
-            return {"error": str(e)}
+            return {"error": f"HTTP {e.code}: {e.reason}"}
     except Exception as e:
         return {"error": str(e)}
 
@@ -96,7 +115,6 @@ def list_tasks(args):
     tasks = result.get("data", {}).get("tasks", [])
 
     if args.table:
-        # Human-readable table format
         if not tasks:
             print("No tasks found.")
             return
@@ -110,7 +128,6 @@ def list_tasks(args):
             print(f"{status:<15} {priority:<10} {title:<50} {projects}")
         print(f"\nTotal: {len(tasks)} tasks")
     else:
-        # JSON output for agents
         output = {
             "success": True,
             "count": len(tasks),
@@ -135,7 +152,6 @@ def create_task(args):
     data = {"title": args.title}
 
     if args.project:
-        # Ensure project is wrapped in [[ ]] if not already
         project = args.project
         if not project.startswith("[["):
             project = f"[[{project}]]"
@@ -241,7 +257,7 @@ def get_stats(args):
 
 
 def get_options(args):
-    """Get available filter options (projects, statuses, etc.)."""
+    """Get available filter options."""
     result = api_request("GET", "/filter-options")
 
     if args.table:
@@ -263,7 +279,7 @@ def get_options(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="TaskNotes CLI")
+    parser = argparse.ArgumentParser(description="TaskNotes CLI - No dependencies required")
     parser.add_argument("--version", "-V", action="version", version=f"tasknotes {__version__}")
     parser.add_argument("--table", action="store_true", help="Human-readable output")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -284,10 +300,10 @@ def main():
     create_parser.add_argument("--priority", choices=["none", "low", "middle", "high", "urgent"])
     create_parser.add_argument("--status", choices=["none", "far-backlog", "near-backlog", "in-progress", "done"])
     create_parser.add_argument("--due", help="Due date (YYYY-MM-DD)")
-    create_parser.add_argument("--scheduled", help="Scheduled date/time (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS)")
+    create_parser.add_argument("--scheduled", help="Scheduled date (YYYY-MM-DD)")
     create_parser.add_argument("--contexts", help="Comma-separated contexts")
     create_parser.add_argument("--time-estimate", type=int, help="Time estimate in minutes")
-    create_parser.add_argument("--details", help="Task description/body content (agent handoff context)")
+    create_parser.add_argument("--details", help="Task description")
     create_parser.add_argument("--table", action="store_true", help="Human-readable output")
 
     # Update command
@@ -297,8 +313,8 @@ def main():
     update_parser.add_argument("--priority", choices=["none", "low", "middle", "high", "urgent"])
     update_parser.add_argument("--title", help="New title")
     update_parser.add_argument("--due", help="Due date (YYYY-MM-DD)")
-    update_parser.add_argument("--scheduled", help="Scheduled date/time (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS)")
-    update_parser.add_argument("--details", help="Task description/body content (agent handoff context)")
+    update_parser.add_argument("--scheduled", help="Scheduled date")
+    update_parser.add_argument("--details", help="Task description")
     update_parser.add_argument("--table", action="store_true", help="Human-readable output")
 
     # Delete command

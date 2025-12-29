@@ -1,11 +1,11 @@
 ---
 name: query
-description: Query Obsidian notes using dataview. Use to show goals, tasks by folder, recent notes, etc.
+description: Query Obsidian notes using dataview. Use to show goals, recent notes, or create goals. For TASKS, use the tasknotes skill instead.
 ---
 
 # Obsidian Query
 
-Query notes in Obsidian using the headless-bases plugin (runs dataview queries).
+Query notes in Obsidian using dataview (via headless-bases plugin).
 
 ## Prerequisites
 
@@ -19,16 +19,16 @@ Query notes in Obsidian using the headless-bases plugin (runs dataview queries).
 {baseDir}/query.py status
 
 # Query goals
-{baseDir}/query.py folder Goals
-
-# Query tasks
-{baseDir}/query.py folder Tasks
+{baseDir}/query.py goals
 
 # Query with filter
-{baseDir}/query.py folder Goals --where "Status=In progress"
+{baseDir}/query.py goals --where "Priority=High"
 
 # Recent files
 {baseDir}/query.py recent 5
+
+# Create a goal
+{baseDir}/query.py create goals "Learn Rust" --fields "Status=In progress,Priority=High"
 ```
 
 ## Commands
@@ -38,11 +38,12 @@ Query notes in Obsidian using the headless-bases plugin (runs dataview queries).
 {baseDir}/query.py status
 ```
 
-### Query Folder
+### Query Collections
 ```bash
-{baseDir}/query.py folder <folder-name>
-{baseDir}/query.py folder Goals
-{baseDir}/query.py folder Tasks --where "Priority=High"
+{baseDir}/query.py goals                           # All active goals
+{baseDir}/query.py goals --where "Priority=High"   # Filter
+{baseDir}/query.py goals --view all                # Different view
+{baseDir}/query.py goals --json                    # JSON output
 ```
 
 ### Recent Files
@@ -51,11 +52,11 @@ Query notes in Obsidian using the headless-bases plugin (runs dataview queries).
 {baseDir}/query.py recent 10
 ```
 
-### Query Base View
+### Create Goal
 ```bash
-{baseDir}/query.py base "Templates/Bases/Goals.base" "Current"
+{baseDir}/query.py create goals "Goal Title" --fields "Status=In progress,Priority=High"
 ```
 
-## Output
+## Note
 
-Returns JSON with file paths and frontmatter properties.
+For **tasks**, use the `tasknotes` skill instead - it has full task management (create, update, delete, list).

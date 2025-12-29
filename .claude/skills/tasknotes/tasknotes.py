@@ -56,10 +56,11 @@ BASE_URL = f"http://localhost:{API_PORT}/api"
 
 
 def get_headers():
-    if not API_KEY:
-        print(json.dumps({"error": "TASKNOTES_API_KEY not set in .env"}))
-        sys.exit(1)
-    return {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
+    """Get headers - API key is optional, some TaskNotes configs don't require it."""
+    headers = {"Content-Type": "application/json"}
+    if API_KEY:
+        headers["Authorization"] = f"Bearer {API_KEY}"
+    return headers
 
 
 def api_request(method: str, endpoint: str, params: dict = None, data: dict = None):

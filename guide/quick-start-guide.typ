@@ -68,17 +68,17 @@
     width: 90%,
   )[
     #text(size: 12pt, weight: "medium")[
-      What you'll do in the next 10 minutes:
+      In the next 10 minutes, you'll:
     ]
     
     #v(0.5cm)
     
     #align(left)[
       #text(size: 11pt)[
-        #text(fill: accent)[1.] Open this vault in Obsidian \
-        #text(fill: accent)[2.] Start Claude Code in the vault folder \
-        #text(fill: accent)[3.] Ask Claude to show your goals \
-        #text(fill: accent)[4.] Create a task using natural language
+        #text(fill: accent)[1.] Talk to your Obsidian vault in plain English \
+        #text(fill: accent)[2.] Create tasks in 3 seconds (not 2 minutes) \
+        #text(fill: accent)[3.] Query your goals, notes, and data instantly \
+        #text(fill: accent)[4.] Try the morning routine that plans your day
       ]
     ]
   ]

@@ -26,9 +26,9 @@
 
 | Skill | Does |
 |-------|------|
-| query | Read goals, tasks, notes |
-| tasknotes | Create & manage tasks |
-| morning-routine | Daily planning workflow |
+| 🔍 query | Read goals, tasks, notes |
+| ✅ tasknotes | Create & manage tasks |
+| ☀️ morning-routine | Daily planning workflow |
 
 ---
 

@@ -2,6 +2,10 @@
   <img src="guide/screenshots/readme-hero.png" alt="Claude Code + Obsidian Starter Kit" width="600">
 </p>
 
+<p align="center">
+  📖 <strong><a href="guide/quick-start-guide.pdf">Full Guide (PDF)</a></strong> — Setup instructions with screenshots
+</p>
+
 ---
 
 ## Quick Start
@@ -25,8 +29,6 @@
 | query | Read goals, tasks, notes |
 | tasknotes | Create & manage tasks |
 | morning-routine | Daily planning workflow |
-
-📖 **[Full Guide (PDF)](guide/quick-start-guide.pdf)**
 
 ---
 

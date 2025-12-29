@@ -731,7 +731,7 @@ Make sure you ran `claude .` (with the dot) from inside the vault folder. The do
           ]
           #v(0.2cm)
           #text(size: 9pt)[
-            #link("https://wa.me/19179915004?text=Hi%20Artem%2C%20I%20have%20a%20question%20about%20the%20Claude%20Code%20starter%20kit")[WhatsApp] · 
+            #link("https://wa.me/12263365520?text=Hi%20Artem%2C%20question%20about%20the%20starter%20kit")[WhatsApp] · 
             #link("https://x.com/ArtemXTech")[X/Twitter] · 
             #link("https://discord.gg/g5Z4Wk2fDk")[Community] · 
             #link("https://artemxtech.substack.com")[Substack]

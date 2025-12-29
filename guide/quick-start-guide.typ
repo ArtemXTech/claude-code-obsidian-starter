@@ -18,8 +18,8 @@
 #let code-fg = rgb("#d4d4d4")
 #let frame-color = rgb("#e5e5e5")
 
-// Helper for framed, centered images
-#let framed-image(path, img-width: 100%) = {
+// Helper for framed, centered images with optional caption
+#let framed-image(path, img-width: 100%, caption: none) = {
   align(center)[
     #block(
       stroke: 1pt + frame-color,
@@ -27,6 +27,10 @@
       clip: true,
     )[
       #image(path, width: img-width)
+    ]
+    #if caption != none [
+      #v(0.3cm)
+      #text(size: 9pt, fill: muted, style: "italic")[#caption]
     ]
   ]
 }
@@ -242,7 +246,7 @@ Open Obsidian and select this folder as a vault. When prompted, click *Trust aut
 
 #v(0.5cm)
 
-#framed-image("screenshots/01-vault-open.png")
+#framed-image("screenshots/01-vault-open.png", caption: "The starter kit vault with CLAUDE.md open")
 
 #v(0.5cm)
 
@@ -303,13 +307,13 @@ Open your terminal, navigate to the vault folder, and start Claude:
 )[
   #text(fill: code-fg, font: "Menlo", size: 10pt)[
     cd path/to/claude-code-obsidian-starter \
-    claude .
+    claude
   ]
 ]
 
 #v(0.5cm)
 
-#framed-image("screenshots/02-claude-started.png")
+#framed-image("screenshots/02-claude-started.png", caption: "Claude Code ready and waiting")
 
 #v(0.5cm)
 
@@ -349,7 +353,7 @@ Claude queries your vault and returns a formatted table:
 
 #v(0.3cm)
 
-#framed-image("screenshots/02-query-goals-terminal.png")
+#framed-image("screenshots/02-query-goals-terminal.png", caption: "Claude returns your goals in a formatted table")
 
 #v(0.8cm)
 
@@ -357,7 +361,7 @@ Now look at the *same data* in Obsidian (Templates/Bases/Goals):
 
 #v(0.3cm)
 
-#framed-image("screenshots/03-query-goals-obsidian.png")
+#framed-image("screenshots/03-query-goals-obsidian.png", caption: "Same data in Obsidian — proof it's real")
 
 #v(0.5cm)
 
@@ -404,7 +408,7 @@ Now try creating a task. Just describe what you need:
 
 #v(0.5cm)
 
-#framed-image("screenshots/04-task-created.png")
+#framed-image("screenshots/04-task-created.png", caption: "Natural language → task with date, time, priority")
 
 #v(0.5cm)
 
@@ -421,7 +425,7 @@ To see it on the Kanban board, open the command palette (Cmd+P) and search "kanb
 
 #v(0.3cm)
 
-#framed-image("screenshots/05-open-kanban-command.png", img-width: 70%)
+#framed-image("screenshots/05-open-kanban-command.png", img-width: 70%, caption: "Cmd+P → search 'kanban'")
 
 #v(0.5cm)
 
@@ -429,7 +433,7 @@ Your task is right there, scheduled and ready:
 
 #v(0.3cm)
 
-#framed-image("screenshots/06-kanban-board.png")
+#framed-image("screenshots/06-kanban-board.png", caption: "Task appears on the Kanban board, scheduled and ready")
 
 #v(0.8cm)
 
@@ -614,7 +618,7 @@ Claude tracks your work throughout the day and generates a visual report:
 
 #v(0.3cm)
 
-#framed-image("screenshots/07-day-review.png", img-width: 85%)
+#framed-image("screenshots/07-day-review.png", img-width: 85%, caption: "Auto-generated daily report with time tracking")
 
 #v(0.5cm)
 
@@ -622,7 +626,7 @@ Then sends it to you automatically — no manual step required:
 
 #v(0.3cm)
 
-#framed-image("screenshots/08-telegram-report.png", img-width: 75%)
+#framed-image("screenshots/08-telegram-report.png", img-width: 75%, caption: "Sent to Telegram automatically — no manual step")
 
 #v(0.8cm)
 
@@ -676,7 +680,7 @@ Make sure Obsidian is open with this vault. The skills communicate with Obsidian
 
 === "Skill not found"
 
-Make sure you ran `claude .` (with the dot) from inside the vault folder. The dot tells Claude to load skills from `.claude/skills/`.
+Make sure you ran `claude` from inside the vault folder. Claude automatically loads skills from `.claude/skills/`.
 
 #v(1.5cm)
 

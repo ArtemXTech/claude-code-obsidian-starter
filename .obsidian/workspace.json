@@ -13,11 +13,11 @@
             "state": {
               "type": "bases",
               "state": {
-                "file": "Templates/Bases/Goals.base",
-                "viewName": "Current"
+                "file": "TaskNotes/Views/kanban-default.base",
+                "viewName": "Kanban Board"
               },
-              "icon": "lucide-table",
-              "title": "Goals"
+              "icon": "lucide-layout-list",
+              "title": "kanban-default"
             }
           }
         ]
@@ -193,6 +193,9 @@
   },
   "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
+    "guide/screenshots/06-kanban-board.png",
+    "guide/screenshots/05-open-kanban-command.png",
+    "Templates/Bases/Goals.base",
     "guide/screenshots/02-claude-started.png",
     "guide/screenshots/04-task-created.png",
     "guide/screenshots/03-query-goals-obsidian.png",
@@ -208,7 +211,6 @@
     "Tasks/Plan long run route.md",
     "Templates/Bases/Meetings.base",
     "Templates/Bases/Journals.base",
-    "Templates/Bases/Goals.base",
     "Tasks/Fix login bug.md",
     "Tasks/Buy running shoes.md",
     "guide/quick-start-guide.pdf",

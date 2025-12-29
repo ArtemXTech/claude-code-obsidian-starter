@@ -56,7 +56,7 @@
     width: 90%,
   )[
     #text(size: 12pt, weight: "medium")[
-      What you'll do in the next 15 minutes:
+      What you'll do in the next 10 minutes:
     ]
     
     #v(0.5cm)
@@ -64,8 +64,8 @@
     #align(left)[
       #text(size: 11pt)[
         #text(fill: accent)[1.] Install Claude Code (if you haven't) \
-        #text(fill: accent)[2.] Open this vault and connect it \
-        #text(fill: accent)[3.] Create your first task by just typing \
+        #text(fill: accent)[2.] Open this vault in Obsidian \
+        #text(fill: accent)[3.] Create a task by just typing \
         #text(fill: accent)[4.] Query your notes like a database
       ]
     ]
@@ -156,7 +156,6 @@
       #text(size: 10pt)[
         Task appears in Obsidian. \
         Properly formatted. \
-        Correctly tagged. \
         Ready to work on.
       ]
     ]
@@ -181,9 +180,9 @@
         inset: 12pt,
         radius: 4pt,
       )[
-        #text(size: 10pt, weight: "bold")[tasknotes]
+        #text(size: 10pt, weight: "bold")[query]
         #v(0.3cm)
-        #text(size: 9pt, fill: muted)[Create, update, list tasks]
+        #text(size: 9pt, fill: muted)[Query & create notes]
       ]
     ],
     [
@@ -192,9 +191,9 @@
         inset: 12pt,
         radius: 4pt,
       )[
-        #text(size: 10pt, weight: "bold")[obases]
+        #text(size: 10pt, weight: "bold")[tasknotes]
         #v(0.3cm)
-        #text(size: 9pt, fill: muted)[Query Obsidian Bases]
+        #text(size: 9pt, fill: muted)[Task management]
       ]
     ],
     [
@@ -205,7 +204,7 @@
       )[
         #text(size: 10pt, weight: "bold")[morning-routine]
         #v(0.3cm)
-        #text(size: 9pt, fill: muted)[Daily overview]
+        #text(size: 9pt, fill: muted)[Daily workflow]
       ]
     ]
   )
@@ -334,10 +333,10 @@ It will open a browser window to sign in with your Anthropic account.
 1. Open Obsidian
 2. Click *Open another vault* (or File → Open Vault)
 3. Select this folder: `claude-code-obsidian-starter`
-4. When prompted about plugins, click *Trust author and enable plugins*
+4. When prompted, click *Trust author and enable plugins*
 
-// TODO: Add screenshot - 01-obsidian-open-vault.png
-// #image("screenshots/01-obsidian-open-vault.png", width: 100%)
+// TODO: Screenshot showing Obsidian with vault open, sidebar visible
+// #image("screenshots/01-vault-open.png", width: 100%)
 
 #v(0.5cm)
 
@@ -345,38 +344,24 @@ You should see folders: `Daily`, `Tasks`, `Goals`, `Templates`
 
 #v(1cm)
 
-=== Enable TaskNotes API
+=== Plugins That Load Automatically
 
-The TaskNotes plugin needs its HTTP API enabled so Claude Code can create tasks.
+The vault comes with these plugins pre-configured:
 
-1. Go to *Settings* → *Community Plugins* → *TaskNotes*
-2. Scroll down to *HTTP API*
-3. Toggle *Enable HTTP API* to ON
-4. Copy the *API Token* shown
-
-// TODO: Add screenshot - 02-tasknotes-settings.png
-// #image("screenshots/02-tasknotes-settings.png", width: 100%)
-
-#v(1cm)
-
-=== Create Your `.env` File
-
-In the vault's root folder, create a file named `.env`:
-
-#block(
-  fill: code-bg,
-  inset: 12pt,
-  radius: 4pt,
-)[
-  #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    TASKNOTES_API_KEY=paste_your_token_here
-  ]
-]
+- *Dataview* — Query your notes like a database
+- *TaskNotes* — Task management with views
+- *headless-bases* — Lets Claude Code talk to Obsidian
 
 #v(0.5cm)
 
-#text(size: 10pt, fill: muted)[
-  Replace `paste_your_token_here` with the actual token you copied.
+#block(
+  fill: rgb("#f0fdf4"),
+  inset: 16pt,
+  radius: 8pt,
+)[
+  #text(size: 11pt)[
+    *No setup needed.* Just open the vault and everything works.
+  ]
 ]
 
 #v(1cm)
@@ -398,7 +383,7 @@ In your terminal, navigate to this vault and start Claude:
 
 #v(0.5cm)
 
-The `.` tells Claude to use this folder as context. It will read `CLAUDE.md` and load the skills.
+The `.` tells Claude to use this folder as context. It reads `CLAUDE.md` and loads the skills automatically.
 
 #pagebreak()
 
@@ -416,9 +401,32 @@ The `.` tells Claude to use this folder as context. It will read `CLAUDE.md` and
 
 #v(1cm)
 
-Now for the magic. Type these commands in Claude Code:
+Now for the magic. Type these in Claude Code:
 
 #v(1cm)
+
+=== Query Your Goals
+
+#block(
+  fill: code-bg,
+  inset: 12pt,
+  radius: 4pt,
+)[
+  #text(fill: code-fg, font: "Menlo", size: 10pt)[
+    Show my goals
+  ]
+]
+
+#v(0.3cm)
+
+#text(size: 10pt, fill: muted)[
+  Claude queries your Goals folder and shows them in a table.
+]
+
+// TODO: Screenshot of terminal showing goals table
+// #image("screenshots/02-query-goals.png", width: 100%)
+
+#v(1.5cm)
 
 === Create a Task
 
@@ -428,28 +436,22 @@ Now for the magic. Type these commands in Claude Code:
   radius: 4pt,
 )[
   #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    Create a task: Test the starter kit, high priority
+    Create a task: Test the starter kit
   ]
 ]
 
 #v(0.3cm)
 
 #text(size: 10pt, fill: muted)[
-  → Watch Obsidian. A new file appears in `Tasks/` folder instantly.
+  A new file appears in `Tasks/` folder instantly.
 ]
 
-// TODO: Add screenshot - 04-claude-create-task.png (terminal)
-// TODO: Add screenshot - 05-obsidian-task-created.png (obsidian)
-// #grid(
-//   columns: (1fr, 1fr),
-//   gutter: 10pt,
-//   image("screenshots/04-claude-create-task.png"),
-//   image("screenshots/05-obsidian-task-created.png"),
-// )
+// TODO: Screenshot of Obsidian showing new task
+// #image("screenshots/03-task-created.png", width: 100%)
 
 #v(1.5cm)
 
-=== List Your Tasks
+=== Filter by Priority
 
 #block(
   fill: code-bg,
@@ -457,19 +459,19 @@ Now for the magic. Type these commands in Claude Code:
   radius: 4pt,
 )[
   #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    Show my tasks
+    Show high priority goals
   ]
 ]
 
 #v(0.3cm)
 
 #text(size: 10pt, fill: muted)[
-  → You get a formatted table with all tasks, their status, and priority.
+  Filters to only show goals where Priority = High.
 ]
 
 #v(1.5cm)
 
-=== Update a Task
+=== Start Your Morning
 
 #block(
   fill: code-bg,
@@ -477,34 +479,14 @@ Now for the magic. Type these commands in Claude Code:
   radius: 4pt,
 )[
   #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    Mark "Test the starter kit" as done
+    Start my morning
   ]
 ]
 
 #v(0.3cm)
 
 #text(size: 10pt, fill: muted)[
-  → The task's status changes to "done" in Obsidian.
-]
-
-#v(1.5cm)
-
-=== Ask for Help
-
-#block(
-  fill: code-bg,
-  inset: 12pt,
-  radius: 4pt,
-)[
-  #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    What should I work on next?
-  ]
-]
-
-#v(0.3cm)
-
-#text(size: 10pt, fill: muted)[
-  → Claude analyzes your tasks and suggests what to focus on.
+  Runs the morning routine: reviews yesterday, does a check-in, shows goals.
 ]
 
 #pagebreak()
@@ -523,6 +505,22 @@ Now for the magic. Type these commands in Claude Code:
 
 #v(1cm)
 
+=== Query Commands
+
+#table(
+  columns: (1fr, 1fr),
+  stroke: 0.5pt + rgb("#e0e0e0"),
+  inset: 10pt,
+  [*Say this*], [*What happens*],
+  [`Show my goals`], [Lists all active goals],
+  [`Show my tasks`], [Lists active tasks],
+  [`Show high priority goals`], [Filters by Priority = High],
+  [`What did I edit recently?`], [Shows recently modified files],
+  [`Create a goal: Learn Rust`], [Creates new goal file],
+)
+
+#v(1.5cm)
+
 === Task Management
 
 #table(
@@ -530,38 +528,23 @@ Now for the magic. Type these commands in Claude Code:
   stroke: 0.5pt + rgb("#e0e0e0"),
   inset: 10pt,
   [*Say this*], [*What happens*],
-  [`Create a task for tomorrow: Call mom`], [Creates task with scheduled date],
-  [`Show in-progress tasks`], [Filters by status],
-  [`Show high priority tasks`], [Filters by priority],
-  [`Delete the task "old task"`], [Removes it from Obsidian],
-  [`How much time did I track?`], [Shows Pomodoro stats],
+  [`Create a task: Call mom`], [Creates task in Tasks/],
+  [`Show tasks for today`], [Filters by due date],
+  [`What should I work on?`], [Suggests based on priority],
 )
 
 #v(1.5cm)
 
-=== Obsidian Bases (if configured)
+=== Morning Routine
 
 #table(
   columns: (1fr, 1fr),
   stroke: 0.5pt + rgb("#e0e0e0"),
   inset: 10pt,
   [*Say this*], [*What happens*],
-  [`Show my goals`], [Lists from Goals.base],
-  [`What bases do I have?`], [Lists all Obsidian Bases],
-  [`Query the Tasks base`], [Shows structured task data],
-)
-
-#v(1.5cm)
-
-=== Daily Routine
-
-#table(
-  columns: (1fr, 1fr),
-  stroke: 0.5pt + rgb("#e0e0e0"),
-  inset: 10pt,
-  [*Say this*], [*What happens*],
-  [`Start my morning`], [Shows today's tasks + creates daily note],
-  [`What's on my schedule?`], [Lists today's items],
+  [`Start my morning`], [Full morning workflow],
+  [`Review yesterday`], [Shows what happened yesterday],
+  [`Plan my day`], [Creates tasks based on goals],
 )
 
 #pagebreak()
@@ -580,36 +563,33 @@ Now for the magic. Type these commands in Claude Code:
 
 #v(1cm)
 
-=== "TaskNotes API not responding"
+=== "Obsidian not responding" or "headless-bases not running"
 
-- Make sure Obsidian is open
-- Check TaskNotes HTTP API is enabled in settings
-- Verify your `.env` file has the correct token
-- Default port is 8080 — make sure nothing else uses it
+- Make sure Obsidian is open with this vault
+- Check that plugins are enabled (Settings → Community Plugins)
+- Restart Obsidian if needed
 
 #v(1cm)
 
 === "Skill not found"
 
-- Make sure you ran `claude .` from the vault folder
+- Make sure you ran `claude .` from the vault folder (not just `claude`)
 - Check that `.claude/skills/` folder exists
-- Try: `claude . --help` to see available skills
+- The `.` is important — it tells Claude to load skills from this folder
 
 #v(1cm)
 
-=== "Command not working"
+=== "No results found"
 
-Be specific. Instead of "make a task", say:
+- The vault comes with sample tasks and goals
+- If you deleted them, create new ones first
+- Check the folder names match: `Tasks/`, `Goals/`
 
-#block(
-  fill: code-bg,
-  inset: 12pt,
-  radius: 4pt,
-)[
-  #text(fill: code-fg, font: "Menlo", size: 10pt)[
-    Create a task: [specific title], [priority]
-  ]
-]
+#v(1cm)
+
+=== Queries not working
+
+Make sure Obsidian is the active vault. The headless-bases plugin only works with the currently open vault.
 
 #v(2cm)
 
@@ -621,11 +601,17 @@ Be specific. Instead of "make a task", say:
     width: 80%,
   )[
     #text(size: 11pt)[
-      *Need help?*
+      *Want to go deeper?*
       
       #v(0.3cm)
       
-      Open an issue on GitHub or check the README for updates.
+      Join the workshop to build custom skills for your workflow.
+      
+      #v(0.3cm)
+      
+      #link("https://workshop.artemzhutov.com")[
+        #text(fill: accent)[workshop.artemzhutov.com]
+      ]
     ]
   ]
 ]

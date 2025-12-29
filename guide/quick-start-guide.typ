@@ -192,7 +192,7 @@
         inset: 12pt,
         radius: 4pt,
       )[
-        #text(size: 10pt, weight: "bold")[query]
+        #text(size: 10pt, weight: "bold")[🔍 query]
         #v(0.3cm)
         #text(size: 9pt, fill: muted)[Read goals, notes, data]
       ]
@@ -203,7 +203,7 @@
         inset: 12pt,
         radius: 4pt,
       )[
-        #text(size: 10pt, weight: "bold")[tasknotes]
+        #text(size: 10pt, weight: "bold")[✅ tasknotes]
         #v(0.3cm)
         #text(size: 9pt, fill: muted)[Create & manage tasks]
       ]
@@ -214,7 +214,7 @@
         inset: 12pt,
         radius: 4pt,
       )[
-        #text(size: 10pt, weight: "bold")[morning-routine]
+        #text(size: 10pt, weight: "bold")[☀️ morning-routine]
         #v(0.3cm)
         #text(size: 9pt, fill: muted)[Daily workflow]
       ]

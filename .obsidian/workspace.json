@@ -205,8 +205,9 @@
   },
   "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
-    "Templates/Bases/Tasks.base",
+    "CLAUDE.md",
     "README.md",
+    "Templates/Bases/Tasks.base",
     "guide/quick-start-guide.pdf",
     "guide/screenshots/readme-hero.png",
     "TaskNotes/Views/kanban-default.base",
@@ -220,7 +221,6 @@
     "guide/screenshots/05-open-kanban-command.png",
     "Templates/Bases/Goals.base",
     "guide/screenshots/02-claude-started.png",
-    "CLAUDE.md",
     "Tasks/Prepare for client meeting.md",
     "Tasks/Test task from CLI.md",
     "Tasks/prepare-for-client-meeting.md",

@@ -192,6 +192,8 @@
   },
   "active": "356887e8c0439fcd",
   "lastOpenFiles": [
+    "guide/screenshots/08-telegram-report.png",
+    "guide/screenshots/07-day-review.png",
     "guide/claude-logo.jpg",
     "guide/claude-logo.png",
     "guide/claude-logo-colored.svg",
@@ -202,7 +204,6 @@
     "guide/screenshots/04-task-created.png",
     "guide/screenshots/03-query-goals-obsidian.png",
     "guide/screenshots/02-query-goals-terminal.png",
-    "guide/screenshots/01-vault-open.png",
     "CLAUDE.md",
     "README.md",
     "Templates/Bases/Tasks.base",

@@ -577,6 +577,67 @@ After the check-in, Claude creates a note in `Daily/` with your responses:
 #pagebreak()
 
 // ============================================
+// WHAT'S POSSIBLE
+// ============================================
+
+#text(size: 20pt, weight: "bold")[
+  What's Possible
+]
+
+#v(0.5cm)
+
+#line(length: 100%, stroke: 0.5pt + rgb("#e0e0e0"))
+
+#v(0.8cm)
+
+The starter kit is just the beginning. With custom skills, Claude can automate entire workflows.
+
+#v(0.5cm)
+
+=== Automated Daily Reports
+
+Claude tracks your work throughout the day and generates a visual report:
+
+#v(0.3cm)
+
+#image("screenshots/07-day-review.png", width: 85%)
+
+#v(0.5cm)
+
+Then sends it to you automatically via Telegram:
+
+#v(0.3cm)
+
+#image("screenshots/08-telegram-report.png", width: 75%)
+
+#v(0.8cm)
+
+#block(
+  fill: rgb("#f5f5f5"),
+  inset: 14pt,
+  radius: 6pt,
+)[
+  #text(size: 10pt)[
+    *The possibilities:*
+    - Morning briefs with sleep data, calendar, and priorities
+    - Email processing and drafting responses
+    - Meeting prep with context from your notes
+    - Weekly reviews aggregating your progress
+    - Business automation: invoices, reports, client updates
+  ]
+]
+
+#v(0.5cm)
+
+#align(center)[
+  #text(size: 10pt, fill: muted)[
+    If you can describe it, Claude can probably do it.
+  ]
+]
+
+#pagebreak()
+
+// ============================================
 // TROUBLESHOOTING
 // ============================================
 

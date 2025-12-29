@@ -1,10 +1,8 @@
 # Claude Code Starter Kit for Obsidian
 
-> **Your first 5 minutes with AI-powered Obsidian**
+A working Obsidian vault with Claude Code skills pre-configured. Open it, try a command, see the magic.
 
-This starter kit gives you a working Obsidian vault with Claude Code skills pre-configured. Open it, try a command, see the magic.
-
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Download & Open
 
@@ -35,31 +33,31 @@ claude .
 ```
 "Create a task: Review the workshop feedback, high priority"
 ```
-→ Creates a task file in Obsidian instantly
+Creates a task file in Obsidian instantly.
 
 ```
 "Show my tasks"
 ```
-→ Lists all your tasks in a table
+Lists all your tasks in a table.
 
 ```
 "What should I work on?"
 ```
-→ Shows your in-progress tasks
+Shows your in-progress tasks.
 
-## ✨ What's Included
+## What's Included
 
 ### Skills (AI capabilities)
 | Skill | What It Does |
 |-------|--------------|
-| **tasknotes** | Create, update, list, delete tasks |
-| **obases** | Query Obsidian Bases (structured data) |
-| **morning-routine** | Daily overview + create daily note |
+| tasknotes | Create, update, list, delete tasks |
+| obases | Query Obsidian Bases (structured data) |
+| morning-routine | Daily overview + create daily note |
 
 ### Obsidian Plugins (pre-installed)
-- **TaskNotes** - Task management with HTTP API
-- **Dataview** - Query your notes like a database
-- **headless-bases** - API access to Obsidian Bases
+- TaskNotes - Task management with HTTP API
+- Dataview - Query your notes like a database
+- headless-bases - API access to Obsidian Bases
 
 ### Folder Structure
 ```
@@ -70,30 +68,21 @@ claude .
 └── .claude/skills/  # AI skills
 ```
 
-## 📖 Full Guide
+## Full Guide
 
-See `guide/Quick-Start-Guide.pdf` for:
-- Detailed setup with screenshots
-- All available commands
-- Troubleshooting
-- What to try next
+See `guide/quick-start-guide.pdf` for detailed setup instructions.
 
-## 🎓 Want More?
+## Want More?
 
-This starter kit is a taste of what's possible. 
+This starter kit is a taste of what's possible.
 
-**Join the workshop** to build your complete Personal AI System:
+Join the workshop to build your complete Personal AI System:
 - Custom skills for your workflow
 - Calendar integration
 - Morning briefings
-- And much more
 
-👉 [workshop.artemzhutov.com](https://workshop.artemzhutov.com)
-
-## 📬 Questions?
-
-WhatsApp: [Contact Artem](https://wa.me/12263365520)
+https://workshop.artemzhutov.com
 
 ---
 
-Made with ❤️ by [Artem Zhutov](https://www.youtube.com/@ArtemXTech)
+Made by Artem Zhutov - https://www.youtube.com/@ArtemXTech

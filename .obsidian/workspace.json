@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "c08f95e8d2a70bd2",
+    "type": "split",
+    "children": [
+      {
+        "id": "48e08997e8fb9c7a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "abe00f2605350eb3",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "guide/quick-start-guide.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "quick-start-guide"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "32b6dd57b88dd1f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "574ace4b38315455",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "356887e8c0439fcd",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "a34371272ee7e240",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ffc2484d2869bec8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c49c33871356e3c8",
+    "type": "split",
+    "children": [
+      {
+        "id": "753dcd03bfbd2602",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "768967d6d4edd8d5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "guide/quick-start-guide.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for quick-start-guide"
+            }
+          },
+          {
+            "id": "b45ff4869e20f738",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "guide/quick-start-guide.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from quick-start-guide"
+            }
+          },
+          {
+            "id": "771e9ca759af8c9c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "beb42fae35c6245a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "31fa56486ec83d1f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "guide/quick-start-guide.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of quick-start-guide"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "tasknotes:Open mini calendar": false,
+      "tasknotes:Open advanced calendar": false,
+      "tasknotes:Open task list": false,
+      "tasknotes:Open agenda": false,
+      "tasknotes:Open kanban board": false,
+      "tasknotes:Open pomodoro": false,
+      "tasknotes:Open pomodoro stats": false,
+      "tasknotes:Create new task": false
+    }
+  },
+  "active": "abe00f2605350eb3",
+  "lastOpenFiles": [
+    "Goals/Run Marathon.md",
+    "Goals/Read 24 Books.md",
+    "Goals/Learn Spanish.md",
+    "Goals/Launch YouTube Channel.md",
+    "Goals/Get to Bed Before 11.md",
+    "Goals/Exercise 5 Times a Week.md",
+    "Goals/Build Side Project.md",
+    "Goals/Acme Website Redesign.md",
+    "Tasks/Write blog post draft.md",
+    "Tasks/Set up CI pipeline.md",
+    "Tasks/Review PRs.md",
+    "Tasks/Record video intro.md",
+    "Tasks/Plan long run route.md",
+    "Tasks/Fix login bug.md",
+    "Tasks/Edit video thumbnail.md",
+    "Tasks/Buy running shoes.md",
+    "Tasks/Book language exchange.md",
+    "TaskNotes/Views/relationships.base",
+    "TaskNotes/Views/agenda-default.base",
+    "TaskNotes/Views/calendar-default.base",
+    "TaskNotes/Views/tasks-default.base",
+    "TaskNotes/Views/kanban-default.base",
+    "TaskNotes/Views/mini-calendar-default.base",
+    "TaskNotes/Views",
+    "TaskNotes"
+  ]
+}

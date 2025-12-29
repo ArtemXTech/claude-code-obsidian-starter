@@ -51,13 +51,11 @@ Shows your in-progress tasks.
 | Skill | What It Does |
 |-------|--------------|
 | tasknotes | Create, update, list, delete tasks |
-| obases | Query Obsidian Bases (structured data) |
 | morning-routine | Daily overview + create daily note |
 
 ### Obsidian Plugins (pre-installed)
 - TaskNotes - Task management with HTTP API
 - Dataview - Query your notes like a database
-- headless-bases - API access to Obsidian Bases
 
 ### Folder Structure
 ```

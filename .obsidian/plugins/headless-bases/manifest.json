@@ -1,9 +1,0 @@
-{
-    "id": "headless-bases",
-    "name": "Headless Bases",
-    "version": "0.1.0",
-    "minAppVersion": "1.10.0",
-    "description": "Programmatically access Obsidian Bases data without rendering views",
-    "author": "Your Name",
-    "isDesktopOnly": false
-}

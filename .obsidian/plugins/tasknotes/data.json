@@ -245,7 +245,7 @@
   "savedViews": [],
   "enableNotifications": true,
   "notificationType": "system",
-  "enableAPI": false,
+  "enableAPI": true,
   "apiPort": 8080,
   "apiAuthToken": "",
   "webhooks": [],

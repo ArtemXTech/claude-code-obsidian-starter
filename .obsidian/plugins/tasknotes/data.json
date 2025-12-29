@@ -1,0 +1,27 @@
+{
+  "tasksFolder": "Tasks/",
+  "taskTag": "task",
+  "excludedFolders": "",
+  "defaultTaskPriority": "none",
+  "defaultTaskStatus": "near-backlog",
+  "taskOrgFiltersCollapsed": false,
+  "taskFilenameFormat": "zettel",
+  "storeTitleInFilename": true,
+  "customFilenameTemplate": "{title}",
+  "taskCreationDefaults": {
+    "defaultContexts": "",
+    "defaultTags": "",
+    "defaultProjects": "",
+    "useParentNoteAsProject": true,
+    "defaultTimeEstimate": 0,
+    "defaultRecurrence": "none",
+    "defaultDueDate": "none",
+    "defaultScheduledDate": "today",
+    "bodyTemplate": "",
+    "useBodyTemplate": true
+  },
+  "httpApi": {
+    "enabled": true,
+    "port": 8080
+  }
+}

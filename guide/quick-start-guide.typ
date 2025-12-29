@@ -403,6 +403,22 @@ The task appears in your `Tasks/` folder in Obsidian, properly formatted with fr
 
 #v(0.8cm)
 
+To see it on the Kanban board, open the command palette (Cmd+P) and search "kanban":
+
+#v(0.3cm)
+
+#image("screenshots/05-open-kanban-command.png", width: 70%)
+
+#v(0.5cm)
+
+Your task is right there, scheduled and ready:
+
+#v(0.3cm)
+
+#image("screenshots/06-kanban-board.png", width: 100%)
+
+#v(0.8cm)
+
 #block(
   fill: rgb("#f0fdf4"),
   inset: 14pt,

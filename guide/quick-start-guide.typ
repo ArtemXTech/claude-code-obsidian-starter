@@ -44,7 +44,7 @@
     gutter: 30pt,
     [#image("claude-logo.jpg", height: 100pt)],
     [#text(size: 32pt, fill: muted)[+]],
-    [#image("obsidian-ascii-logo.png", height: 100pt)],
+    [#image("obsidian-ascii-logo.png", height: 120pt)],
   )
   
   #v(1.5cm)
@@ -678,7 +678,7 @@ Make sure Obsidian is open with this vault. The skills communicate with Obsidian
 
 Make sure you ran `claude .` (with the dot) from inside the vault folder. The dot tells Claude to load skills from `.claude/skills/`.
 
-#v(2cm)
+#v(1.5cm)
 
 #align(center)[
   #block(
@@ -703,10 +703,40 @@ Make sure you ran `claude .` (with the dot) from inside the vault folder. The do
   ]
 ]
 
-#v(2cm)
+#v(1.5cm)
 
 #align(center)[
-  #text(size: 10pt, fill: muted)[
-    Built by Artem Zhutov · \@ArtemXTech
+  #block(
+    inset: 20pt,
+    radius: 8pt,
+  )[
+    #grid(
+      columns: (auto, 1fr),
+      gutter: 20pt,
+      align: horizon,
+      [
+        #block(
+          clip: true,
+          radius: 50pt,
+        )[
+          #image("profile.png", width: 60pt)
+        ]
+      ],
+      [
+        #align(left)[
+          #text(size: 12pt, weight: "bold")[Artem Zhutov]
+          #v(0.3cm)
+          #text(size: 10pt, fill: muted)[
+            Questions? Reach out:
+          ]
+          #v(0.2cm)
+          #text(size: 9pt)[
+            #link("https://wa.me/19179915004")[WhatsApp] · 
+            #link("https://x.com/ArtemXTech")[X/Twitter] · 
+            #link("https://discord.gg/g5Z4Wk2fDk")[Discord]
+          ]
+        ]
+      ]
+    )
   ]
 ]

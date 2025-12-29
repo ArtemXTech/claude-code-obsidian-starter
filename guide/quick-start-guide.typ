@@ -250,7 +250,7 @@ The vault comes pre-configured with:
 - *Tasks* — Your tasks (managed by TaskNotes)
 - *Goals* — Goal tracking with structured data
 - *Daily* — Daily notes and check-ins
-- *.claude/skills* — The AI skills that make this work
+- *.claude/skills* — Claude Code skills that make this work
 
 #v(0.5cm)
 

@@ -21,17 +21,17 @@ COLLECTIONS = {
     },
     "tasks": {
         "folder": "Tasks",
-        "fields": ["Status", "Priority", "Project", "Due"],
+        "fields": ["status", "project", "context", "due"],
         "views": {
-            "active": 'p.Status !== "Done" && p.Status !== "Cancelled"',
-            "today": 'p.Due === dv.date("today").toFormat("yyyy-MM-dd")',
+            "active": 'p.status !== "completed" && p.status !== "cancelled"',
+            "today": 'p.due === dv.date("today").toFormat("yyyy-MM-dd")',
             "all": None,
         },
         "default_view": "active",
     },
     "daily": {
         "folder": "Daily",
-        "fields": ["Energy", "Mood"],
+        "fields": ["energy", "mood"],
         "views": {
             "recent": None,
         },
@@ -210,25 +210,24 @@ def cmd_create(collection: str, title: str, fields: dict = None):
     fm_lines = ["---"]
     if fields:
         for k, v in fields.items():
-            if isinstance(v, str):
-                fm_lines.append(f'{k}: "{v}"')
-            else:
-                fm_lines.append(f"{k}: {v}")
+            fm_lines.append(f"{k}: {v}")
     fm_lines.append("---")
     fm_lines.append("")
     fm_lines.append(f"# {title}")
     fm_lines.append("")
     
-    content = "\\n".join(fm_lines)
+    content = "\n".join(fm_lines)
+    # Escape for JS string
+    content_escaped = content.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
     
     code = f'''
 const path = "{path}";
-const content = "{content}";
+const content = "{content_escaped}";
 let file = app.vault.getAbstractFileByPath(path);
 if (file) {{
     return {{ error: "File already exists: " + path }};
 }}
-await app.vault.create(path, content.replace(/\\\\n/g, "\\n"));
+await app.vault.create(path, content);
 return {{ created: path }};
 '''
     result = eval_js(code)
@@ -236,7 +235,12 @@ return {{ created: path }};
         print(f"Error: {result['error']}", file=sys.stderr)
         sys.exit(1)
     
-    print(f"Created: {result.get('result', {}).get('created', path)}")
+    res = result.get("result", {})
+    if isinstance(res, dict) and "error" in res:
+        print(f"Error: {res['error']}", file=sys.stderr)
+        sys.exit(1)
+    
+    print(f"Created: {res.get('created', path)}")
 
 
 def parse_where(s: str) -> dict:

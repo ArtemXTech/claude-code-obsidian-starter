@@ -494,6 +494,89 @@ Your task is right there, scheduled and ready:
 #pagebreak()
 
 // ============================================
+// BONUS: MORNING ROUTINE
+// ============================================
+
+#text(size: 20pt, weight: "bold")[
+  Bonus: Morning Routine Skill
+]
+
+#v(0.5cm)
+
+#line(length: 100%, stroke: 0.5pt + rgb("#e0e0e0"))
+
+#v(0.8cm)
+
+The starter kit includes a morning routine skill that helps you start each day with intention.
+
+#v(0.5cm)
+
+#block(
+  fill: code-bg,
+  inset: 12pt,
+  radius: 4pt,
+)[
+  #text(fill: code-fg, font: "Menlo", size: 11pt)[
+    Start my morning
+  ]
+]
+
+#v(0.8cm)
+
+=== What It Does
+
+#v(0.3cm)
+
+#grid(
+  columns: (auto, 1fr),
+  gutter: 15pt,
+  row-gutter: 12pt,
+  [#text(fill: accent, weight: "bold")[1.]], [*Reviews yesterday* — Reads your recent daily notes and summarizes what happened],
+  [#text(fill: accent, weight: "bold")[2.]], [*Morning check-in* — Asks how you're feeling, your energy level, sleep quality],
+  [#text(fill: accent, weight: "bold")[3.]], [*Shows your goals* — Queries active goals so you remember what matters],
+  [#text(fill: accent, weight: "bold")[4.]], [*Plans the day* — Suggests tasks based on your energy and priorities],
+)
+
+#v(0.8cm)
+
+=== The Daily Note
+
+After the check-in, Claude creates a note in `Daily/` with your responses:
+
+#v(0.3cm)
+
+#block(
+  fill: rgb("#f5f5f5"),
+  inset: 14pt,
+  radius: 6pt,
+)[
+  #text(font: "Menlo", size: 9pt)[
+    \-\-\- \
+    date: 2025-12-29 \
+    mood: good \
+    energy: 7 \
+    sleep_quality: 8 \
+    \-\-\- \
+    \
+    \# Morning Check-in \
+    \
+    \#\# How I'm feeling \
+    Rested, ready to tackle the day...
+  ]
+]
+
+#v(0.8cm)
+
+#align(center)[
+  #text(size: 10pt, fill: muted)[
+    This creates a daily record you can look back on. \
+    Over time, you'll see patterns in your energy and productivity.
+  ]
+]
+
+#pagebreak()
+
+// ============================================
 // TROUBLESHOOTING
 // ============================================
 

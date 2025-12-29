@@ -77,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "c49c33871356e3c8",
@@ -193,6 +192,7 @@
   },
   "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
+    "guide/claude-logo-colored.svg",
     "guide/screenshots/06-kanban-board.png",
     "guide/screenshots/05-open-kanban-command.png",
     "Templates/Bases/Goals.base",

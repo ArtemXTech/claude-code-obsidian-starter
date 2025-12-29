@@ -27,10 +27,10 @@
   #grid(
     columns: (1fr, auto, 1fr),
     align: center + horizon,
-    gutter: 20pt,
-    [#image("claude-logo.svg", width: 60pt)],
-    [#text(size: 24pt, fill: muted)[+]],
-    [#image("obsidian-ascii-logo.png", width: 60pt)],
+    gutter: 25pt,
+    [#image("claude-logo.svg", width: 80pt)],
+    [#text(size: 28pt, fill: muted)[+]],
+    [#image("obsidian-ascii-logo.png", width: 80pt)],
   )
   
   #v(1.5cm)

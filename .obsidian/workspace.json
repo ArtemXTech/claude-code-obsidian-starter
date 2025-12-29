@@ -4,21 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "48e08997e8fb9c7a",
+        "id": "519dcf8dbb149365",
         "type": "tabs",
         "children": [
           {
-            "id": "abe00f2605350eb3",
+            "id": "68ff07a4f11af33e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "Tasks/Plan long run route.md",
-                "mode": "source",
-                "source": false
+                "file": "Templates/Bases/Tasks.base",
+                "viewName": "Active Tasks"
               },
-              "icon": "lucide-file",
-              "title": "Plan long run route"
+              "icon": "lucide-table",
+              "title": "Tasks"
             }
           }
         ]
@@ -191,8 +190,9 @@
       "tasknotes:Create new task": false
     }
   },
-  "active": "356887e8c0439fcd",
+  "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
+    "Tasks/Plan long run route.md",
     "Templates/Bases/Tasks.base",
     "Templates/Bases/Meetings.base",
     "Templates/Bases/Journals.base",
@@ -212,14 +212,12 @@
     "Tasks/Set up CI pipeline.md",
     "Tasks/Review PRs.md",
     "Tasks/Record video intro.md",
-    "Tasks/Plan long run route.md",
     "Tasks/Edit video thumbnail.md",
     "Tasks/Book language exchange.md",
     "TaskNotes/Views/relationships.base",
     "TaskNotes/Views/agenda-default.base",
     "TaskNotes/Views/calendar-default.base",
     "TaskNotes/Views/tasks-default.base",
-    "TaskNotes/Views/kanban-default.base",
-    "TaskNotes/Views/mini-calendar-default.base"
+    "TaskNotes/Views/kanban-default.base"
   ]
 }

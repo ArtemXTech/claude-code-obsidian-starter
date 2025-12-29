@@ -1,0 +1,63 @@
+filters:
+  and:
+    - file.inFolder("Tasks")
+formulas:
+  days_old: (now() - file.ctime).days
+properties:
+  file:
+    displayName: Task
+  note.status:
+    displayName: Status
+  note.project:
+    displayName: Project
+  note.context:
+    displayName: Context
+  note.due:
+    displayName: Due
+  formula.days_old:
+    displayName: Age (days)
+views:
+  - type: table
+    name: Active Tasks
+    filters:
+      and:
+        - status != "completed"
+        - status != "archived"
+    order:
+      - file
+      - status
+      - project
+      - context
+      - due
+    sort:
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      file.file: 300
+  - type: table
+    name: By Project
+    filters:
+      and:
+        - status != "completed"
+        - status != "archived"
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file
+      - status
+      - due
+    sort:
+      - property: due
+        direction: ASC
+  - type: table
+    name: All Tasks
+    order:
+      - file
+      - status
+      - project
+      - due
+      - formula.days_old
+    sort:
+      - property: file.ctime
+        direction: DESC

@@ -1,0 +1,88 @@
+filters:
+  and:
+    - file.inFolder("Daily")
+    - '!file.name.contains("Template")'
+formulas:
+  entry_type: if(file.name.contains("Morning"), "Morning", if(file.name.contains("Evening"), "Evening", "Reflection"))
+  days_since: ((now() - file.ctime).days).round()
+properties:
+  file:
+    displayName: Entry
+  file.ctime:
+    displayName: Date
+  formula.entry_type:
+    displayName: Type
+  note.mood:
+    displayName: Mood (1-10)
+  note.energy:
+    displayName: Energy (1-10)
+  note.sleep_quality:
+    displayName: Sleep (1-10)
+  formula.days_since:
+    displayName: Days Ago
+views:
+  - type: table
+    name: All Entries
+    order:
+      - file
+      - formula.entry_type
+      - mood
+      - energy
+      - sleep_quality
+      - file.ctime
+    sort:
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      file.file: 355
+  - type: table
+    name: Last 7 Days
+    filters:
+      and:
+        - file.ctime > now() - "7d"
+    order:
+      - file
+      - formula.entry_type
+      - mood
+      - energy
+      - sleep_quality
+    sort:
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      file.file: 355
+      formula.entry_type: 92
+  - type: table
+    name: Tracking Patterns
+    filters:
+      and:
+        - note.mood != null
+    order:
+      - file
+      - formula.entry_type
+      - mood
+      - energy
+      - sleep_quality
+    sort:
+      - property: file.ctime
+        direction: DESC
+  - type: table
+    name: Weekly Review
+    filters:
+      or:
+        - and:
+            - file.ctime > now() - "7d"
+            - file.name.contains("Morning")
+        - file.name.contains("Reflection")
+    order:
+      - file
+      - formula.entry_type
+      - mood
+      - energy
+    sort:
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      file.file: 224
+      formula.entry_type: 87
+      note.energy: 124

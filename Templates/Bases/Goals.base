@@ -1,0 +1,77 @@
+filters:
+  and:
+    - file.inFolder("Goals")
+    - '!file.name.contains("Template")'
+properties:
+  file.name:
+    displayName: Goal
+  note.Area:
+    displayName: Area
+  note.Frequency:
+    displayName: Frequency
+  note.Status:
+    displayName: Status
+  note.Priority:
+    displayName: Priority
+views:
+  - type: table
+    name: Current
+    filters:
+      and:
+        - Status == "In progress"
+    order:
+      - file
+      - Area
+      - Frequency
+      - Status
+      - Priority
+    sort:
+      - property: Priority
+        direction: ASC
+    columnSize:
+      file.file: 300
+  - type: table
+    name: Every morning
+    filters:
+      and:
+        - Frequency == "Every morning"
+        - Status == "In progress"
+    order:
+      - file
+      - Area
+      - Priority
+    sort:
+      - property: file
+        direction: ASC
+      - property: Area
+        direction: ASC
+    columnSize:
+      file.file: 300
+  - type: table
+    name: Every week
+    filters:
+      and:
+        - Frequency == "Every week"
+        - Status == "In progress"
+    order:
+      - file
+      - Area
+      - Priority
+    sort:
+      - property: Priority
+        direction: ASC
+    columnSize:
+      file.file: 300
+  - type: table
+    name: All
+    order:
+      - file
+      - Frequency
+      - Status
+      - Priority
+      - Area
+    sort:
+      - property: Status
+        direction: ASC
+    columnSize:
+      file.file: 300

@@ -1,0 +1,50 @@
+filters:
+  and:
+    - file.inFolder("Meetings")
+    - '!file.name.contains("Template")'
+properties:
+  file.name:
+    displayName: Meeting
+  note.date:
+    displayName: Date
+  note.people:
+    displayName: People
+  note.type:
+    displayName: Type
+views:
+  - type: table
+    name: All Meetings
+    order:
+      - file.name
+      - date
+      - type
+      - people
+    sort:
+      - property: date
+        direction: DESC
+    columnSize:
+      file.name: 400
+  - type: table
+    name: Upcoming
+    filters:
+      and:
+        - date >= now()
+    order:
+      - file.name
+      - date
+      - people
+    sort:
+      - property: date
+        direction: ASC
+  - type: table
+    name: Past
+    filters:
+      and:
+        - date < now()
+    order:
+      - file.name
+      - date
+      - people
+    sort:
+      - property: date
+        direction: DESC

@@ -11,13 +11,26 @@
             "id": "68ff07a4f11af33e",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "TaskNotes/Views/kanban-default.base",
-                "viewName": "Kanban Board"
+                "file": "README.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-list",
-              "title": "kanban-default"
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "d1d6de05ade9190a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "guide/quick-start-guide.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "quick-start-guide"
             }
           }
         ]
@@ -190,8 +203,13 @@
       "tasknotes:Create new task": false
     }
   },
-  "active": "356887e8c0439fcd",
+  "active": "68ff07a4f11af33e",
   "lastOpenFiles": [
+    "Templates/Bases/Tasks.base",
+    "README.md",
+    "guide/quick-start-guide.pdf",
+    "guide/screenshots/readme-hero.png",
+    "TaskNotes/Views/kanban-default.base",
     "guide/profile.png",
     "guide/screenshots/08-telegram-report.png",
     "guide/screenshots/07-day-review.png",
@@ -202,11 +220,7 @@
     "guide/screenshots/05-open-kanban-command.png",
     "Templates/Bases/Goals.base",
     "guide/screenshots/02-claude-started.png",
-    "guide/screenshots/04-task-created.png",
-    "guide/screenshots/03-query-goals-obsidian.png",
     "CLAUDE.md",
-    "README.md",
-    "Templates/Bases/Tasks.base",
     "Tasks/Prepare for client meeting.md",
     "Tasks/Test task from CLI.md",
     "Tasks/prepare-for-client-meeting.md",
@@ -216,7 +230,6 @@
     "Templates/Bases/Journals.base",
     "Tasks/Fix login bug.md",
     "Tasks/Buy running shoes.md",
-    "guide/quick-start-guide.pdf",
     "Goals/Run Marathon.md",
     "Goals/Read 24 Books.md",
     "Goals/Learn Spanish.md",
@@ -234,7 +247,6 @@
     "TaskNotes/Views/relationships.base",
     "TaskNotes/Views/agenda-default.base",
     "TaskNotes/Views/calendar-default.base",
-    "TaskNotes/Views/tasks-default.base",
-    "TaskNotes/Views/kanban-default.base"
+    "TaskNotes/Views/tasks-default.base"
   ]
 }

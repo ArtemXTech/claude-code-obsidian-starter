@@ -570,7 +570,7 @@ After the check-in, Claude creates a note in `Daily/` with your responses:
 )[
   #text(font: "Menlo", size: 9pt)[
     \-\-\- \
-    date: 2025-12-29 \
+    date: 2026-01-08 \
     mood: good \
     energy: 7 \
     sleep_quality: 8 \

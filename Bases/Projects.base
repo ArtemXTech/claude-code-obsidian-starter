@@ -35,3 +35,8 @@ views:
     sort:
       - property: status
         direction: ASC
+    columnSize:
+      file.name: 145
+      note.status: 105
+      note.priority: 113
+      note.deadline: 120

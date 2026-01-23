@@ -1,0 +1,90 @@
+filters:
+  and:
+    - type == "granola-meeting"
+    - '!file.path.startsWith(".claude")'
+properties:
+  note.date:
+    displayName: Date
+  note.time:
+    displayName: Time
+  note.duration_min:
+    displayName: Duration
+  note.people:
+    displayName: People
+  note.status:
+    displayName: Status
+  file.name:
+    displayName: Meeting
+views:
+  - type: table
+    name: Recent
+    filters:
+      and:
+        - date >= today() - "7d"
+    order:
+      - file.name
+      - date
+      - time
+      - duration_min
+      - people
+      - status
+    sort:
+      - property: date
+        direction: DESC
+    columnSize:
+      file.name: 400
+      note.date: 120
+      note.time: 80
+      note.duration_min: 80
+      note.status: 100
+  - type: table
+    name: Needs Processing
+    filters:
+      and:
+        - status == "raw"
+    order:
+      - file.name
+      - date
+      - time
+      - duration_min
+      - people
+    sort:
+      - property: date
+        direction: DESC
+    columnSize:
+      file.name: 400
+      note.date: 120
+  - type: table
+    name: By Person
+    filters:
+      and:
+        - list(people).contains(this)
+    order:
+      - file.name
+      - date
+      - time
+      - duration_min
+      - status
+    sort:
+      - property: date
+        direction: DESC
+    columnSize:
+      file.name: 400
+      note.date: 120
+  - type: table
+    name: All
+    order:
+      - file.name
+      - date
+      - time
+      - duration_min
+      - people
+      - status
+    sort:
+      - property: date
+        direction: DESC
+    columnSize:
+      file.name: 400
+      note.date: 120
+      note.time: 80
+      note.duration_min: 80

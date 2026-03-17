@@ -4,23 +4,72 @@
     "type": "split",
     "children": [
       {
-        "id": "7be6d00413dea170",
-        "type": "tabs",
+        "id": "3292886f584a6cc5",
+        "type": "split",
         "children": [
           {
-            "id": "01e46b33143dc89a",
-            "type": "leaf",
-            "state": {
-              "type": "bases",
-              "state": {
-                "file": "Bases/Projects.base",
-                "viewName": "All Projects"
-              },
-              "icon": "lucide-table",
-              "title": "Projects"
-            }
+            "id": "7be6d00413dea170",
+            "type": "tabs",
+            "dimension": 75.75757575757575,
+            "children": [
+              {
+                "id": "01e46b33143dc89a",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Amuse/Runbook.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "Runbook"
+                }
+              }
+            ]
+          },
+          {
+            "id": "811a094587525512",
+            "type": "tabs",
+            "dimension": 24.242424242424242,
+            "children": [
+              {
+                "id": "e2f05d7a66830953",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/kamrankafi/Documents/Obsidian/my-vault",
+                      "focus": false,
+                      "profile": {
+                        "followTheme": true,
+                        "name": "",
+                        "restoreHistory": false,
+                        "rightClickAction": "copyPaste",
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": ""
+                      },
+                      "serial": null
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "Terminal: Empty"
+                }
+              }
+            ]
           }
-        ]
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -77,8 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "c49c33871356e3c8",
@@ -156,17 +204,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Bases/Projects.base",
+                "file": "Amuse/Runbook.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Projects"
+              "title": "Outline of Runbook"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       },
       {
         "id": "1723a73a79213ca3",
@@ -186,8 +234,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -205,55 +252,59 @@
       "tasknotes:Open kanban board": false,
       "tasknotes:Open pomodoro": false,
       "tasknotes:Open pomodoro stats": false,
-      "tasknotes:Create new task": false
+      "tasknotes:Create new task": false,
+      "terminal:Open terminal": false,
+      "qmd-as-md-obsidian:Toggle Quarto Preview": false,
+      "workspaces:Manage workspace layouts": false
     }
   },
   "active": "01e46b33143dc89a",
   "lastOpenFiles": [
+    "docs/plans/2026-03-17-morning-status-triage-plan.md",
+    "docs/plans/2026-03-17-morning-status-triage-design.md",
+    "docs/plans",
+    "docs",
+    "Notes/Projects/claude-sessions-qmd/2026-03-17-1630-1737aa70.md",
+    "Amuse/AI-COO-PRD.md",
+    "Amuse/Handoff.md",
+    "Amuse/Clients/Submersive.md",
     "CLAUDE.md",
+    "Notes/Projects/claude-sessions-qmd/2026-03-17-1526-1334ab73.md",
+    "Tasks/Set up 6 Claude Projects for BD team.md",
+    "Tasks/Finalize tag taxonomy enforcement.md",
+    "Tasks/Create CS Jira project.md",
+    "Tasks/Configure Atlassian and M365 MCP connectors.md",
+    "Tasks/Schedule call with Chris and Corvas.md",
+    "Tasks/Send finalized reply to Chris.md",
+    "Tasks/Draft AI one-pager.md",
+    "Tasks/Respond to Chris re presale targets.md",
+    "Tasks/Review ticketing platform options.md",
+    "Tasks/Finalize ROM supplement for Chris.md",
+    "Notes/Projects/claude-sessions-qmd/2026-03-12-2218-f1971a0a.md",
+    "Avitia/Handoff.md",
+    "Avitia/Decisions.md",
+    "Avitia/Tasks.md",
+    "Amuse/Meetings/chris-call-prep-2026-03-14-kam.md",
+    "Amuse/Meetings/chris-call-prep-2026-03-14-kam.html",
+    "Amuse/Meetings/chris-call-prep-2026-03-14.html",
+    "Amuse/Meetings/Chris-Call-Prep-2026-03-14.md",
+    "Amuse/Meetings",
+    "Daily/2026-03-12. Morning Check-in.md",
+    "Notes/Projects/claude-sessions-qmd/2026-03-12-1439-ec04eb06.md",
+    "Avitia",
+    "Amuse/Sessions",
+    "Amuse/Clients",
+    "Amuse",
     "Bases/Kanban.base",
-    "Tasks/Test the vault.md",
-    "Bases/Relationships.base",
-    "Bases/Mini-Calendar.base",
-    "Bases/Agenda.base",
-    "Bases/Calendar.base",
-    "README.md",
-    "Bases/Projects.base",
+    "guide/claude-logo.jpg",
+    "guide/screenshots/01-vault-open.png",
     "guide/screenshots/02-query-projects-terminal.png",
     "guide/screenshots/03-query-projects-obsidian.png",
     "guide/screenshots/03-query-goals-obsidian.png",
     "guide/screenshots/02-query-goals-terminal.png",
-    "Projects/Fitness Challenge.md",
-    "Projects/Home Office Setup.md",
-    "Projects/Launch Newsletter.md",
-    "Projects/Learn Claude Code.md",
-    "Projects/Q1 Content Plan.md",
-    "Projects/Website Redesign.md",
-    "Projects",
-    "Templates/Bases/Tasks.base",
-    "guide/quick-start-guide.pdf",
     "guide/screenshots/readme-hero.png",
-    "TaskNotes/Views/kanban-default.base",
     "guide/profile.png",
     "guide/screenshots/08-telegram-report.png",
-    "guide/screenshots/07-day-review.png",
-    "guide/claude-logo.jpg",
-    "guide/claude-logo.png",
-    "Tasks/Prepare for client meeting.md",
-    "Tasks/Test task from CLI.md",
-    "Tasks/prepare-for-client-meeting.md",
-    "Goals/Test Goal.md",
-    "Tasks/Plan long run route.md",
-    "Tasks/Fix login bug.md",
-    "Tasks/Buy running shoes.md",
-    "Goals/Run Marathon.md",
-    "Goals/Read 24 Books.md",
-    "Goals/Learn Spanish.md",
-    "Goals/Launch YouTube Channel.md",
-    "Goals/Get to Bed Before 11.md",
-    "Goals/Exercise 5 Times a Week.md",
-    "Goals/Build Side Project.md",
-    "Goals/Acme Website Redesign.md",
-    "Tasks/Write blog post draft.md"
+    "guide/screenshots/07-day-review.png"
   ]
 }

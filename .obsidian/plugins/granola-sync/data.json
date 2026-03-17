@@ -1,0 +1,21 @@
+{
+  "latestSyncTime": 0,
+  "isSyncEnabled": true,
+  "syncInterval": 1800,
+  "syncDaysBack": 7,
+  "syncNotes": true,
+  "includePrivateNotes": true,
+  "saveAsIndividualFiles": false,
+  "baseFolderType": "custom",
+  "customBaseFolder": "Granola",
+  "subfolderPattern": "none",
+  "filenamePattern": "{title}",
+  "linkFromDailyNotes": false,
+  "dailyNoteLinkHeading": "# Meetings",
+  "dailyNoteSectionHeading": "# Granola Notes",
+  "syncTranscripts": true,
+  "transcriptHandling": "same-location",
+  "customTranscriptBaseFolder": "Granola/Transcripts",
+  "transcriptSubfolderPattern": "none",
+  "transcriptFilenamePattern": "{title}-transcript"
+}

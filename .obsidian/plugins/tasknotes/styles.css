@@ -1947,7 +1947,7 @@
 }
 
 .tasknotes-plugin .tn-cursor-pointer {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .tasknotes-plugin .tn-cursor-wait {
@@ -2486,7 +2486,7 @@
     font-size: var(--tn-font-size-md);
     font-weight: var(--tn-font-weight-medium);
     line-height: 1;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     user-select: none;
     text-decoration: none;
     outline: none;
@@ -2965,6 +2965,43 @@
 .tasknotes-plugin .task-card__metadata-pill--google-calendar svg {
     width: 12px;
     height: 12px;
+}
+
+/* Checklist progress metadata */
+.tasknotes-plugin .task-card__metadata-property--checklistProgress {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tasknotes-plugin .task-card__progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tasknotes-plugin .task-card__progress-bar {
+    width: 72px;
+    height: 6px;
+    background: color-mix(in srgb, var(--background-modifier-border) 70%, transparent);
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.tasknotes-plugin .task-card__progress-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--interactive-accent);
+    border-radius: inherit;
+    transition: width var(--tn-transition-fast);
+}
+
+.tasknotes-plugin .task-card__progress-label {
+    font-size: var(--tn-font-size-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--tn-text-muted);
 }
 
 
@@ -4051,6 +4088,23 @@
     vertical-align: baseline;
 }
 
+.tasknotes-plugin .task-card--layout-inline .task-card__metadata-property--checklistProgress {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tasknotes-plugin .task-card--layout-inline .task-card__progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tasknotes-plugin .task-card--layout-inline .task-card__progress-bar {
+    width: 42px;
+    height: 4px;
+}
+
 /* Metadata pills in inline mode */
 .tasknotes-plugin .task-card--layout-inline .task-card__metadata-pill {
     display: inline;
@@ -4241,7 +4295,7 @@
     padding: 2px 4px;
 
     /* Interactivity */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 
     /* Prevent text selection issues */
     user-select: none;
@@ -4269,7 +4323,7 @@
     border: 2px solid var(--tn-border-color);
     background-color: transparent;
     transition: all 0.2s ease;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     position: relative;
     flex-shrink: 0;
     margin-right: 6px; /* More gap between status and priority */
@@ -4294,7 +4348,7 @@
     border: none;
     flex-shrink: 0;
     margin-right: 6px; /* Gap between priority and title */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 /* Date info styling */
@@ -4308,7 +4362,7 @@
 
 /* Clickable date styling */
 .tasknotes-plugin .task-inline-preview__date--clickable {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-radius: 3px;
     padding: 1px 3px;
     transition: all 0.15s ease;
@@ -4346,7 +4400,7 @@
 /* Recurring indicator styling */
 .tasknotes-plugin .task-inline-preview__recurring-indicator {
     opacity: 0.6;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -4379,7 +4433,7 @@
 /* Pencil icon styling */
 .tasknotes-plugin .task-inline-preview__pencil {
     opacity: 0;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -4458,7 +4512,7 @@
     border-radius: 3px;
     
     /* Interactivity */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     opacity: 0.6;
     transition: all 0.15s ease;
     
@@ -4530,7 +4584,7 @@
     max-width: min(600px, 80vw); /* Responsive max-width for longer titles */
     flex-shrink: 1; /* Allow shrinking if needed */
     vertical-align: baseline;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: color 0.15s ease;
     border-radius: 2px;
     padding: 1px 2px;
@@ -4574,7 +4628,7 @@
     flex-shrink: 0;
     opacity: 0.4;
     transition: opacity 0.15s ease;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4619,11 +4673,9 @@
 @keyframes tn-fadeInTaskPreview {
     from {
         opacity: 0;
-        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: scale(1);
     }
 }
 
@@ -4756,7 +4808,7 @@
     border-left: 3px solid transparent; /* Transparent by default */
     
     /* Interactions & Accessibility - Simplified */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: background-color var(--tn-transition-fast);
     outline: none;
     role: listitem;
@@ -5016,7 +5068,7 @@
     border: none;
     border-bottom: 1px solid var(--tn-border-color);
     border-radius: 0;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: background-color var(--tn-transition-fast);
 }
 
@@ -5258,7 +5310,7 @@
     background: transparent;
     color: var(--text-muted);
     font-size: 12px;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5312,7 +5364,7 @@
     border: none;
     border-radius: var(--radius-s);
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5339,7 +5391,7 @@
     border: none;
     border-radius: var(--radius-s);
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--font-ui-small);
     font-weight: 500;
     transition: all 0.2s ease;
@@ -5577,7 +5629,7 @@
     color: var(--text-normal);
     text-align: left;
     justify-content: flex-start;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--font-ui-small);
     font-weight: 500;
     transition: background-color 0.2s ease;
@@ -5603,7 +5655,7 @@
     border: none;
     box-shadow: none;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--tn-spacing-xs);
     border-radius: var(--radius-s);
     display: flex;
@@ -5626,7 +5678,7 @@
     border: none;
     color: var(--color-accent);
     text-align: left;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-radius: var(--radius-s);
     font-size: var(--font-ui-small);
     font-weight: 500;
@@ -5678,7 +5730,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--tn-spacing-sm) 0;
 }
 
@@ -5967,7 +6019,7 @@
     border: none;
     box-shadow: none;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--tn-spacing-xs);
     border-radius: var(--radius-s);
     display: flex;
@@ -5996,7 +6048,7 @@
     border: none;
     box-shadow: none;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--font-ui-small);
     border-radius: var(--radius-s);
     transition: all 0.2s ease;
@@ -6067,7 +6119,7 @@
     width: 30px;
     border-radius: var(--radius-s);
     color: var(--text-accent);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: 16px;
     font-weight: 700;
     transition: all 0.2s ease;
@@ -6101,7 +6153,7 @@
     display: flex;
     align-items: center;
     gap: var(--tn-spacing-xs);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--font-ui-small);
     color: var(--text-normal);
 }
@@ -6530,7 +6582,7 @@
     border: none;
     background: var(--interactive-accent);
     color: var(--text-on-accent);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -6548,7 +6600,7 @@
     border: 1px solid var(--background-modifier-border);
     background: var(--background-primary);
     color: var(--tn-text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -6566,7 +6618,7 @@
     border: 1px solid var(--background-modifier-border);
     background: var(--background-secondary);
     color: var(--tn-text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -6765,7 +6817,7 @@
 
 .tasknotes-plugin .modal-form__suggestion {
     padding: var(--tn-spacing-sm) var(--tn-spacing-lg);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--tn-font-size-md);
     color: var(--tn-text-normal);
     line-height: 1.5;
@@ -7043,12 +7095,12 @@
     flex-direction: column;
     align-items: center;
     gap: var(--tn-spacing-sm);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .tasknotes-plugin .modal-form__day-input {
     margin: 0;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     width: auto;
     height: auto;
     flex: none;
@@ -7060,7 +7112,7 @@
     color: var(--tn-text-normal);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     user-select: none;
     line-height: 1;
 }
@@ -7351,7 +7403,7 @@
     border-radius: var(--radius-s);
     background: var(--background-primary);
     color: var(--tn-text-normal);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -7789,7 +7841,7 @@
 /* Individual completion option */
 .tasknotes-plugin .cm-tooltip-autocomplete li {
     padding: var(--size-4-2) var(--size-4-3);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-radius: var(--radius-s);
     display: flex;
     align-items: center;
@@ -7990,7 +8042,7 @@
     width: 32px;
     height: 32px;
     border-radius: var(--radius-s);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
     position: relative;
 }
@@ -8145,7 +8197,7 @@
     border-radius: var(--radius-s);
     background: transparent;
     color: var(--interactive-accent);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
     min-width: 80px;
 }
@@ -8195,6 +8247,35 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 
 .tasknotes-plugin.minimalist-task-modal.expanded .modal-content {
     min-height: 400px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex column so the split-content fills remaining space while buttons stay pinned */
+.tasknotes-plugin.minimalist-task-modal.expanded .minimalist-modal-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.tasknotes-plugin.minimalist-task-modal.expanded .modal-split-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Keep buttons pinned at the bottom, outside the scrollable area */
+.tasknotes-plugin.minimalist-task-modal.expanded .modal-button-container {
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    padding-top: var(--size-4-3);
+    margin-top: var(--size-4-3);
+    border-top: 1px solid var(--background-modifier-border);
 }
 
 /* =====================================================================
@@ -8228,6 +8309,44 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     .modal.mod-tasknotes .modal-button-container .mod-cta {
         margin-left: 0;
     }
+}
+
+/* =====================================================================
+   MOBILE-SPECIFIC FIXES (Obsidian Mobile)
+   On mobile, modals often take full screen. Ensure buttons stay at bottom
+   without overlapping scrollable content.
+   ===================================================================== */
+
+body.is-mobile .tasknotes-plugin.minimalist-task-modal.expanded .modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+body.is-mobile .tasknotes-plugin.minimalist-task-modal.expanded .minimalist-modal-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+body.is-mobile .tasknotes-plugin.minimalist-task-modal.expanded .modal-split-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Add padding at bottom to ensure content isn't hidden behind buttons during scroll */
+    padding-bottom: var(--size-4-2);
+}
+
+body.is-mobile .tasknotes-plugin.minimalist-task-modal.expanded .modal-button-container {
+    flex-shrink: 0;
+    position: relative;
+    background: var(--modal-background);
+    padding-top: var(--size-4-3);
+    margin-top: var(--size-4-2);
+    border-top: 1px solid var(--background-modifier-border);
 }
 
 /* =====================================================================
@@ -8313,6 +8432,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
         flex: 1;
         min-height: 0;
         gap: 0;
+        overflow: visible;
     }
 
     /* Left column - reset display:contents and use flex column */
@@ -8494,7 +8614,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 
 .tasknotes-plugin .autocomplete-suggestion {
     padding: 8px 12px;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-bottom: 1px solid var(--background-modifier-border-hover);
     font-size: var(--font-ui-small);
     color: var(--text-normal);
@@ -8581,7 +8701,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border: none;
     background: transparent;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: 14px;
     padding: 2px 4px;
     transition: color 0.1s ease;
@@ -8620,7 +8740,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 }
 
 .tasknotes-plugin .recurring-calendar__day--clickable {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.1s ease;
 }
 
@@ -8835,7 +8955,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .tasknotes-plugin .clickable-project .internal-link {
     color: var(--link-color);
     text-decoration: none;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-ui-small);
     border-radius: var(--radius-xs);
@@ -8860,7 +8980,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .tasknotes-plugin .clickable-dependency .task-dependency-link {
     color: var(--link-color);
     text-decoration: none;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-ui-small);
     border-radius: var(--radius-xs);
@@ -9852,7 +9972,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     background: var(--background-primary);
     color: var(--text-normal);
     font-size: var(--font-ui-medium);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     color-scheme: dark light;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -9878,7 +9998,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .date-picker-modal__button {
     padding: var(--size-4-2) var(--size-4-4);
     border-radius: var(--radius-s);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: var(--font-ui-medium);
     font-weight: 500;
     transition: all 0.2s ease;
@@ -9941,7 +10061,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .date-picker-modal input[type="date"]::-webkit-datetime-edit-day-field,
 .date-picker-modal input[type="date"]::-webkit-datetime-edit-year-field {
     /* Make the date text clickable */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     color: var(--text-normal);
     font-size: var(--font-ui-medium);
     font-family: var(--font-interface);
@@ -9953,7 +10073,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     opacity: 0.7;
     width: 16px;
     height: 16px;
@@ -9982,7 +10102,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .date-picker-modal input[type="time"]::-webkit-datetime-edit-minute-field,
 .date-picker-modal input[type="time"]::-webkit-datetime-edit-ampm-field {
     /* Make the time text clickable */
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     color: var(--text-normal);
     font-size: var(--font-ui-medium);
     font-family: var(--font-interface);
@@ -9994,7 +10114,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     opacity: 0.7;
     width: 16px;
     height: 16px;
@@ -10014,7 +10134,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     .date-picker-modal input[type="date"],
     .date-picker-modal input[type="time"] {
         /* Firefox doesn't have the same issue but ensure consistency */
-        cursor: var(--cursor);
+        cursor: var(--cursor, pointer);
     }
 }
 
@@ -10595,7 +10715,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border-radius: 4px;
     padding: 1px 2px;
     margin: -1px -2px;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .unscheduled-tasks-selector__project-link:hover {
@@ -10635,7 +10755,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     padding: var(--palette-gap);
     border-radius: var(--palette-border-radius);
     min-height: var(--palette-item-height);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: background-color 0.15s ease;
 }
 
@@ -10871,7 +10991,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     background: transparent;
     border: none;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--size-4-1);
     border-radius: var(--radius-s);
     transition: all 0.2s ease;
@@ -11220,7 +11340,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     color: var(--tn-text-normal);
     letter-spacing: 0.01em;
     line-height: 1.4;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 /* Count element within task list group headers */
@@ -11238,7 +11358,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .tasknotes-plugin .task-group-right .agenda-view__item-count { margin-left: 0; margin-right: 0; }
 
 /* Chevron/toggle styles (match preview-all) */
-.tasknotes-plugin .task-group-header { cursor: var(--cursor); }
+.tasknotes-plugin .task-group-header { cursor: var(--cursor, pointer); }
 .task-group-header { display: flex; align-items: center; justify-content: flex-start; gap: var(--tn-spacing-xs); }
 .tasknotes-plugin .task-group-toggle svg,  .task-group-toggle .chevron, .task-group-toggle .chevron path { color: var(--tn-text-normal); }
 .tasknotes-plugin .task-group-toggle svg,  .task-group-toggle .chevron path { stroke: currentColor; }
@@ -11265,14 +11385,14 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 
 /* Per-group subgroup actions */
 .tasknotes-plugin .task-subgroup-actions { display:flex; align-items:center; gap: 4px; margin-left: 0; }
-.tasknotes-plugin .task-subgroup-action { border:none; background:transparent; color: var(--tn-text-muted); cursor: var(--cursor); padding: 0; }
+.tasknotes-plugin .task-subgroup-action { border:none; background:transparent; color: var(--tn-text-muted); cursor: var(--cursor, pointer); padding: 0; }
 .tasknotes-plugin .task-subgroup-action:hover { color: var(--tn-text-normal); }
 
 
 .tasknotes-plugin .task-list-view__project-link {
     color: var(--tn-text-normal);
     text-decoration: none;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: color 0.2s ease;
 }
 
@@ -11488,7 +11608,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     background: transparent;
     color: var(--tn-text-normal);
     font-size: var(--tn-font-size-sm);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all var(--tn-transition-fast);
 }
 
@@ -11544,7 +11664,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     font-weight: normal;
     opacity: 0.7;
     transition: opacity var(--tn-transition-fast);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-radius: var(--tn-radius-sm);
     font-size: var(--tn-font-size-lg);
 }
@@ -11650,7 +11770,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     min-height: 2rem;
     padding: var(--tn-spacing-xs);
     text-align: center;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11985,7 +12105,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 }
 
 .tasknotes-plugin .mini-calendar-view__legend-summary {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     list-style: none;
     padding: calc(var(--tn-spacing-xs) * 0.25) 0;
 }
@@ -12404,7 +12524,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     font-weight: 600;
     color: var(--tn-text-muted);
     background: var(--tn-bg-secondary);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all var(--tn-transition-fast);
     border-right: 1px solid var(--tn-border-color);
 }
@@ -12765,7 +12885,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border: none;
     color: var(--text-muted);
     font-size: 1.2em;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
     margin-left: 0.5rem;
@@ -12816,7 +12936,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 .timeblock-attachment-item .internal-link {
     color: var(--link-color);
     text-decoration: none;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .timeblock-attachment-item .internal-link:hover {
@@ -12978,7 +13098,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     height: 30px;
     border: 1px solid var(--background-modifier-border);
     border-radius: 3px;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .ics-form-number,
@@ -12996,7 +13116,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .ics-form-checkbox,
@@ -13080,7 +13200,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     color: var(--text-on-accent);
     border: none;
     border-radius: 6px;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     font-size: 0.85rem;
     font-weight: 500;
     transition: background-color 0.2s ease;
@@ -13345,6 +13465,19 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     background: transparent !important;
 }
 
+/* Today highlight in list/agenda view */
+.advanced-calendar-view .fc-list-day.fc-day-today .fc-list-day-cushion {
+    color: var(--interactive-accent) !important;
+    font-weight: 600;
+    border-bottom-color: var(--interactive-accent);
+}
+
+.hide-today-highlight .fc-list-day.fc-day-today .fc-list-day-cushion {
+    color: var(--text-normal) !important;
+    font-weight: 500;
+    border-bottom-color: var(--divider-color);
+}
+
 .advanced-calendar-view .fc-list-table th {
     background: var(--background-secondary-alt) !important;
 }
@@ -13358,7 +13491,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     padding: 0.2rem 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .advanced-calendar-view .fc-event:hover {
@@ -13422,7 +13555,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border-radius: 6px;
     padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -13671,7 +13804,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 }
 
 .fc-list-task-priority-dot {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .fc-list-task-priority-dot {
@@ -13684,7 +13817,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     height: 12px;
     flex-shrink: 0;
     opacity: 0.7;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .fc-list-task-recurring-indicator:hover {
@@ -13859,6 +13992,14 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     max-width: 100%;
 }
 
+/* Bases Kanban root uses tn-tasknotesKanban (no kanban-view wrapper) */
+.tasknotes-plugin.tn-tasknotesKanban {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
 /* Kanban Header */
 .tasknotes-plugin .kanban-view__header {
     display: flex;
@@ -13945,10 +14086,16 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     display: flex;
     height: 100%;
     overflow-x: auto;
+    overflow-y: auto;
     padding: var(--tn-spacing-md);
     gap: var(--tn-spacing-md);
     min-height: 0;
     flex-wrap: nowrap;
+}
+
+.tasknotes-plugin.tn-tasknotesKanban .kanban-view__board {
+    flex: 1;
+    min-height: 0;
 }
 
 /* Board Scrollbar */
@@ -14093,6 +14240,9 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     padding: var(--tn-spacing-sm) var(--tn-spacing-md);
     border-bottom: 1px solid var(--tn-border-color);
     background: var(--tn-bg-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 5;
     border-radius: var(--tn-radius-md) var(--tn-radius-md) 0 0;
     cursor: grab;
     user-select: none;
@@ -14367,6 +14517,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     }
 }
 
+
 /* ===== AGENDA-VIEW.CSS ===== */
 /* ================================================
    AGENDA VIEW - BEM STRUCTURE
@@ -14499,7 +14650,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     font-weight: 400;
     min-width: 120px;
     min-height: var(--tn-input-height-md);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all var(--tn-transition-fast);
 }
 
@@ -14531,7 +14682,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     font-weight: var(--tn-font-weight-medium);
     line-height: 1.25;
     height: var(--tn-button-height-md);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     user-select: none;
     text-decoration: none;
     white-space: nowrap;
@@ -14560,7 +14711,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     display: flex;
     align-items: center;
     gap: var(--tn-spacing-sm);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     user-select: none;
     font-size: var(--tn-font-size-md);
     color: var(--tn-text-normal);
@@ -14626,7 +14777,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     margin-bottom: var(--tn-spacing-sm);
     border-bottom: 1px solid var(--tn-border-color);
     position: relative;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 /* Day section container (like task groups) */
@@ -14940,7 +15091,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     min-height: 100vh;
 
 	button {
-		cursor: var(--cursor);
+		cursor: var(--cursor, pointer);
 	}
 
 }
@@ -15383,7 +15534,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 }
 
 .tasknotes-plugin .pomodoro-view__stat--clickable {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--tn-spacing-xs);
     border-radius: var(--tn-radius-sm);
     transition: all var(--tn-transition-fast);
@@ -16780,7 +16931,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     background: var(--tn-background-primary);
     color: var(--tn-text-normal);
     font-size: var(--tn-font-size-sm);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -16804,7 +16955,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
 
 /* Clickable project items */
 .tasknotes-plugin .stats-view__project-item--clickable {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -16901,7 +17052,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border: none;
     font-size: var(--tn-font-size-xl, 20px);
     color: var(--tn-text-muted, var(--text-muted));
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: var(--tn-spacing-xs, 4px);
     border-radius: var(--tn-border-radius-sm, 4px);
     transition: all 0.2s ease;
@@ -17015,7 +17166,7 @@ body:not(.is-mobile) .modal.mod-tasknotes .modal-button-container .mod-cta {
     border: 1px solid var(--tn-border-color);
     border-radius: var(--tn-border-radius-sm);
     padding: var(--tn-spacing-sm);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -17350,7 +17501,7 @@ select.tasknotes-settings__card-input {
     color: var(--text-normal);
     font-size: 13px;
     font-weight: 500;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -17389,7 +17540,7 @@ select.tasknotes-settings__card-input {
     border: none !important;
     background: transparent;
     color: var(--text-muted);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -17624,7 +17775,7 @@ select.tasknotes-settings__card-input {
 
 /* Clickable header styling */
 .tasknotes-settings__card-header--clickable {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     user-select: none;
 }
 
@@ -17743,7 +17894,7 @@ select.tasknotes-settings__card-input {
     color: var(--text-normal);
     font-size: var(--tn-font-size-sm);
     font-weight: 500;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     transition: all 0.2s ease;
 }
 
@@ -17813,7 +17964,7 @@ select.tasknotes-settings__card-input {
     user-select: all;
     border: 1px solid var(--background-modifier-border);
     margin: var(--tn-spacing-md) 0;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .tasknotes-webhook-secret-code:hover {
@@ -18005,13 +18156,13 @@ select.tasknotes-settings__card-input {
     width: 16px;
     height: 16px;
     margin: 0;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 .tasknotes-settings__property-label {
     font-size: 13px;
     color: var(--text-normal);
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     flex: 1;
     line-height: 1.3;
 }
@@ -18025,7 +18176,7 @@ select.tasknotes-settings__card-input {
    ================================================ */
 
 .tasknotes-settings__collapsible-header {
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: 8px 12px;
     margin: -8px -12px 12px -12px;
     border-radius: 4px;
@@ -18071,7 +18222,7 @@ select.tasknotes-settings__card-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: 8px 12px;
     margin: 0 -12px 12px -12px;
     border-radius: 4px;
@@ -18219,6 +18370,13 @@ select.tasknotes-settings__card-input {
 /* ================================================
    INTEGRATIONS TAB - OAUTH SETUP & CALENDAR CARDS
    ================================================ */
+
+/* Calendar & ICS card container spacing */
+.google-calendar-integration-container,
+.microsoft-calendar-integration-container,
+.ics-subscriptions-container {
+    margin-top: 12px;
+}
 
 /* OAuth Setup Info Box */
 .tasknotes-oauth-setup-guide {
@@ -18554,7 +18712,7 @@ select.tasknotes-settings__card-input {
   background: var(--background-primary);
   color: var(--text-normal);
   font-size: 0.85rem;
-  cursor: var(--cursor);
+  cursor: var(--cursor, pointer);
   transition: all 0.2s ease;
 }
 
@@ -18785,7 +18943,7 @@ select.tasknotes-settings__card-input {
   color: var(--text-normal);
   font-size: 0.9rem;
   font-weight: 500;
-  cursor: var(--cursor);
+  cursor: var(--cursor, pointer);
   transition: all 0.2s ease;
   white-space: nowrap;
   min-width: 0;
@@ -19032,7 +19190,7 @@ select.tasknotes-settings__card-input {
     color: var(--tn-text-normal);
     letter-spacing: 0.01em;
     line-height: 1.4;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
 }
 
 /* Count element within group headers */
@@ -19054,7 +19212,7 @@ select.tasknotes-settings__card-input {
     color: var(--tn-text-normal);
     font-size: 14px;
     line-height: 1;
-    cursor: var(--cursor);
+    cursor: var(--cursor, pointer);
     padding: 0;
 }
 
@@ -19215,6 +19373,19 @@ select.tasknotes-settings__card-input {
 
 #bases-calendar .fc-list-day {
     background: transparent;
+}
+
+/* Today highlight in list/agenda view */
+#bases-calendar .fc-list-day.fc-day-today .fc-list-day-cushion {
+    color: var(--interactive-accent);
+    font-weight: 600;
+    border-bottom-color: var(--interactive-accent);
+}
+
+.hide-today-highlight #bases-calendar .fc-list-day.fc-day-today .fc-list-day-cushion {
+    color: var(--text-normal);
+    font-weight: var(--tn-font-weight-medium);
+    border-bottom-color: var(--tn-divider-color);
 }
 
 /* Override FullCalendar's bright white border color in dark mode */

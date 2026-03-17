@@ -1,4 +1,7 @@
 [
   "dataview",
-  "tasknotes"
+  "tasknotes",
+  "terminal",
+  "qmd-as-md-obsidian",
+  "granola-sync"
 ]

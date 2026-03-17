@@ -51,6 +51,7 @@
     "defaultShowICSEvents": true,
     "enableTimeblocking": false,
     "defaultShowTimeblocks": true,
+    "defaultTimeblockColor": "#6366f1",
     "nowIndicator": true,
     "selectMirror": true,
     "weekNumbers": false,
@@ -240,7 +241,7 @@
   "enableNotifications": true,
   "notificationType": "system",
   "enableAPI": true,
-  "apiPort": 8090,
+  "apiPort": 8080,
   "apiAuthToken": "",
   "webhooks": [],
   "userFields": [],
@@ -419,12 +420,12 @@
   "googleCalendarSyncTokens": {},
   "enabledMicrosoftCalendars": [],
   "microsoftCalendarSyncTokens": {},
-  "lastSeenVersion": "4.3.0",
+  "lastSeenVersion": "4.4.0",
   "pomodoroState": {
     "isRunning": false,
     "timeRemaining": 1500
   },
-  "lastPomodoroDate": "2026-01-07",
+  "lastPomodoroDate": "2026-03-17",
   "pomodoroMobileSidebar": "tab",
   "disableOverlayOnAlias": false,
   "autoCreateDefaultBasesFiles": true,
@@ -443,5 +444,8 @@
     "defaultEventDuration": 60,
     "includeObsidianLink": true,
     "defaultReminderMinutes": null
-  }
+  },
+  "enableMCP": false,
+  "enableMdbaseSpec": false,
+  "resetCheckboxesOnRecurrence": false
 }

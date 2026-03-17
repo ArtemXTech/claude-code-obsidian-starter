@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chris + Corvas Call Prep — March 14, 2026</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --text-muted: #888;
+    --accent: #f59e0b;
+    --accent-dim: rgba(245,158,11,0.12);
+    --green: #34d399;
+    --green-dim: rgba(52,211,153,0.12);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.12);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96,165,250,0.12);
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .header .badge { display: inline-block; background: var(--accent-dim); color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .header .subtitle { color: var(--text-muted); font-size: 15px; }
+  .header .meta { display: flex; gap: 24px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+  .header .meta-item { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 13px; }
+  .header .meta-item .dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* Objectives bar */
+  .objectives { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 48px; }
+  .obj-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .obj-card .num { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .obj-card .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-header .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .section-header h2 { font-size: 20px; font-weight: 600; }
+  .section-header .tag { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-left: auto; }
+
+  /* Cards */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+  .card p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 10px 12px; background: var(--surface2); color: var(--text-muted); font-weight: 600; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+
+  /* Highlight rows */
+  .highlight-row { background: var(--accent-dim); font-weight: 600; }
+
+  /* Talking points */
+  .talking-point { background: var(--accent-dim); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 16px; font-size: 14px; font-style: italic; color: var(--accent); }
+  .talking-point::before { content: '"'; font-size: 24px; line-height: 0; vertical-align: -4px; margin-right: 4px; }
+  .talking-point::after { content: '"'; font-size: 24px; line-height: 0; vertical-align: -4px; margin-left: 2px; }
+
+  /* Grid layouts */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* Stat cards */
+  .stat { text-align: center; padding: 20px; }
+  .stat .value { font-size: 28px; font-weight: 700; }
+  .stat .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); }
+  .timeline-item.done::before { background: var(--green); border-color: var(--green); }
+  .timeline-item .date { font-size: 12px; color: var(--accent); font-weight: 600; }
+  .timeline-item .desc { font-size: 14px; margin-top: 2px; }
+  .timeline-item .days { font-size: 11px; color: var(--text-muted); }
+
+  /* Platform comparison */
+  .platform-card { border-left: 3px solid; padding: 16px 20px; }
+  .platform-card.recommended { border-left-color: var(--green); background: var(--green-dim); }
+  .platform-card.neutral { border-left-color: var(--blue); }
+  .platform-card.not-rec { border-left-color: var(--red); opacity: 0.7; }
+  .platform-card .name { font-weight: 600; font-size: 15px; }
+  .platform-card .use { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .platform-card .detail { font-size: 13px; margin-top: 8px; }
+
+  /* Layered architecture */
+  .layer { border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+  .layer-1 { background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(52,211,153,0.02)); border: 1px solid rgba(52,211,153,0.2); }
+  .layer-2 { background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border: 1px solid rgba(245,158,11,0.2); }
+  .layer-3 { background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(96,165,250,0.02)); border: 1px solid rgba(96,165,250,0.2); }
+  .layer .layer-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .layer-1 .layer-label { color: var(--green); }
+  .layer-2 .layer-label { color: var(--accent); }
+  .layer-3 .layer-label { color: var(--blue); }
+
+  /* Agenda */
+  .agenda-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-time { font-size: 13px; font-weight: 600; color: var(--accent); min-width: 70px; flex-shrink: 0; }
+  .agenda-topic { font-size: 14px; font-weight: 500; }
+  .agenda-lead { font-size: 12px; color: var(--text-muted); }
+
+  /* Warning box */
+  .warning { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.2); border-radius: 10px; padding: 16px 20px; margin-top: 16px; }
+  .warning .title { color: var(--red); font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  .warning p { font-size: 13px; color: var(--text-muted); }
+
+  /* Internal badge */
+  .internal-badge { display: inline-block; background: var(--red-dim); color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; }
+
+  /* Trigger cards */
+  .trigger { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .trigger:last-child { border-bottom: none; }
+  .trigger-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-dim); }
+  .trigger-text .when { font-size: 13px; font-weight: 600; }
+  .trigger-text .why { font-size: 12px; color: var(--text-muted); }
+
+  /* Print */
+  @media print { body { background: #fff; color: #000; } .card, .table-wrap { border-color: #ddd; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">Meeting Prep</div>
+    <h1>Chris + Corvas Call</h1>
+    <div class="subtitle">Submersive x Amuse — ROM Walkthrough + Scope Alignment</div>
+    <div class="meta">
+      <div class="meta-item"><div class="dot" style="background:var(--green)"></div> March 14, 2026</div>
+      <div class="meta-item"><div class="dot" style="background:var(--accent)"></div> 30-45 min</div>
+      <div class="meta-item"><div class="dot" style="background:var(--blue)"></div> @Kam, @Jee, Chris, Corvas</div>
+    </div>
+  </div>
+
+  <!-- Objectives -->
+  <div class="objectives">
+    <div class="obj-card"><div class="num">$50-70K</div><div class="label">Amuse allocation of $100-150K total</div></div>
+    <div class="obj-card"><div class="num">31</div><div class="label">Days to mid-April presale</div></div>
+    <div class="obj-card"><div class="num">$1.725M</div><div class="label">Pre-opening revenue target</div></div>
+    <div class="obj-card"><div class="num">4/4</div><div class="label">Chris's questions answered</div></div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- WHAT CHRIS TOLD US -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--blue-dim);color:var(--blue)">1</div>
+      <h2>What Chris Told Us</h2>
+      <span class="tag" style="background:var(--green-dim);color:var(--green)">All answered</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Question</th><th>Chris's Answer</th><th>Implication</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Tech stack ops?</strong></td>
+            <td>Partner/buy for Phase 1. No custom builds. Revisit later.</td>
+            <td style="color:var(--green)">Validates our Webflow/Klaviyo/Beehiiv stack. Faster sprint.</td>
+          </tr>
+          <tr>
+            <td><strong>Meow Wolf data?</strong></td>
+            <td>No direct access. 38K IG followers + Corvas's profile knowledge.</td>
+            <td style="color:var(--accent)">Build targeting from own assets. IG = seed for lookalikes.</td>
+          </tr>
+          <tr>
+            <td><strong>Budget envelope?</strong></td>
+            <td>$100K-$150K all-in through grand opening. Can scale if presale performs.</td>
+            <td style="color:var(--red)">Amuse must be a portion, not all. Equity bridge needed.</td>
+          </tr>
+          <tr>
+            <td><strong>Coordinator?</strong></td>
+            <td>Not hiring now. 4-8 week sprint focus. Asks if Phase 1 works without.</td>
+            <td style="color:var(--accent)">Jee covers remotely. Recommend hire trigger at 200+ members.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- BUDGET FIT -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--accent-dim);color:var(--accent)">2</div>
+      <h2>Budget Fit: Amuse as a Portion</h2>
+      <span class="tag" style="background:var(--accent-dim);color:var(--accent)">Key discussion</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Amuse Allocation: $50-70K</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Component</th><th>Est. Cost</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>BUILD Sprint (Kam)</td><td>$15-20K</td><td>60-80 hrs @ $250/hr — LP, CRM, analytics, payments</td></tr>
+              <tr><td>BUILD Sprint (Jee)</td><td>$10-15K</td><td>Brand voice, content pillars, social relaunch, email copy</td></tr>
+              <tr><td>Monthly Retainer (Kam)</td><td>$3-5K/mo</td><td>Tech ops, analytics, automation (4-6 months)</td></tr>
+              <tr><td>Monthly Retainer (Jee)</td><td>$5K/mo</td><td>Strategy + 3 tasks/wk base (4-6 months)</td></tr>
+              <tr class="highlight-row"><td><strong>Subtotal Amuse</strong></td><td><strong>$50-70K</strong></td><td>Through grand opening at startup rates</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Remaining Budget: $40-80K</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Line Item</th><th>Est. Range</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Paid media (Meta/IG)</td><td>$15-30K</td><td>Start $2-3K/mo, scale with presale</td></tr>
+              <tr><td>PR / comms</td><td>$10-20K</td><td>Didi's network, press outreach</td></tr>
+              <tr><td>Design / fabrication</td><td>$10-20K</td><td>Physical assets, event materials</td></tr>
+              <tr><td>Community / events</td><td>$5-10K</td><td>Activations, founding member experiences</td></tr>
+              <tr class="highlight-row"><td><strong>Remaining total</strong></td><td><strong>$40-80K</strong></td><td>Depends on Amuse allocation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Equity / Rev-Share Bridge</h3>
+      <div class="grid-3">
+        <div class="stat"><div class="value" style="color:var(--accent)">~$25-35K</div><div class="label">Delta from startup to standard rates</div></div>
+        <div class="stat"><div class="value" style="color:var(--green)">$250/hr</div><div class="label">Kam startup rate (vs $500 standard)</div></div>
+        <div class="stat"><div class="value" style="color:var(--blue)">TBD</div><div class="label">Equity % or rev-share structure</div></div>
+      </div>
+      <p style="text-align:center;margin-top:12px">Scaling trigger: If Drop 1 hits targets ($77K+ revenue) &rarr; expand scope and budget together.</p>
+    </div>
+
+    <div class="talking-point">We sized this to leave room in the budget for paid media and execution. If presale performance is strong, we scale up together.</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- TIMELINE -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--green-dim);color:var(--green)">3</div>
+      <h2>Presale Timeline: Mid-April</h2>
+      <span class="tag" style="background:var(--red-dim);color:var(--red)">31 days</span>
+    </div>
+
+    <div class="card">
+      <div class="timeline">
+        <div class="timeline-item done">
+          <div class="date">March 14 (Today)</div>
+          <div class="desc">ROM walkthrough call with Chris + Corvas</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">March 17 (Monday)</div>
+          <div class="desc">Sprint kickoff &mdash; Webflow LP + Klaviyo CRM build begins</div>
+          <div class="days">3 days from now</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">March 30</div>
+          <div class="desc">Waitlist launch &mdash; LP live, email capture active, GA4 tracking</div>
+          <div class="days">16 days from now</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">April 7</div>
+          <div class="desc">Payment infrastructure live &mdash; Stripe + Memberful ready</div>
+          <div class="days">24 days from now</div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">~April 14 (Mid-April)</div>
+          <div class="desc"><strong>Presale Drop 1</strong> &mdash; $299/yr, 1,000 cap, $100 deposit</div>
+          <div class="days">31 days from now</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>What Must Be Live by Mid-April</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Purpose</th><th>Sprint Week</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Webflow</strong></td><td>Landing page + waitlist</td><td>Week 1</td><td style="color:var(--accent)">Not started</td></tr>
+            <tr><td><strong>Klaviyo</strong></td><td>CRM + email automation</td><td>Week 1-2</td><td style="color:var(--accent)">Not started</td></tr>
+            <tr><td><strong>GA4 + Segment</strong></td><td>Analytics + attribution</td><td>Week 1</td><td style="color:var(--accent)">Not started</td></tr>
+            <tr><td><strong>Beehiiv</strong></td><td>Waitlist newsletter</td><td>Week 2</td><td style="color:var(--accent)">Not started</td></tr>
+            <tr><td><strong>Stripe + Memberful</strong></td><td>Membership payments</td><td>Week 2-3</td><td style="color:var(--accent)">Not started</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="talking-point">If we kick off Monday, we have waitlist infrastructure live by March 30 and payments ready a week before presale. The 2-week gap between waitlist and presale builds anticipation and gives us conversion data.</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- TARGETING -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--purple-dim);color:var(--purple)">4</div>
+      <h2>Targeting Without Meow Wolf Data</h2>
+    </div>
+
+    <div class="card">
+      <h3>Assets We Have</h3>
+      <div class="grid-2" style="margin-top:12px">
+        <div style="padding:12px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:700;color:var(--accent)">38K</div>
+          <div style="font-size:12px;color:var(--text-muted)">Instagram followers (seed audience for lookalikes)</div>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:700;color:var(--green)">$0</div>
+          <div style="font-size:12px;color:var(--text-muted)">Spent on marketing = all organic demand (strong signal)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Phase-by-Phase Strategy</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Approach</th><th>Expected Outcome</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>SEED</strong><br><span style="color:var(--text-muted);font-size:11px">Mar-Apr</span></td>
+              <td>1% lookalike from IG. Austin geo + wellness/art interests. Retarget LP visitors.</td>
+              <td>Waitlist to 2,000+ before presale</td>
+            </tr>
+            <tr>
+              <td><strong>SELL</strong><br><span style="color:var(--text-muted);font-size:11px">Apr-Jul</span></td>
+              <td>Expand to 3-5% lookalikes. Behavioral data from waitlist. A/B test creative.</td>
+              <td>Convert waitlist &rarr; Drop 1 (target: 100+ at 10% conv.)</td>
+            </tr>
+            <tr>
+              <td><strong>OPEN</strong><br><span style="color:var(--text-muted);font-size:11px">Q1 2027</span></td>
+              <td>Broader targeting. Member referrals. Press/PR amplification.</td>
+              <td>Fill soft launch + grand opening capacity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="talking-point">38K followers gives us a real seed audience. We build lookalikes from day one and layer behavioral data from waitlist engagement. The organic interest already generated tells us paid amplification will work.</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- COMMUNITY MANAGER -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--green-dim);color:var(--green)">5</div>
+      <h2>Community Manager: Phase 1 Without?</h2>
+      <span class="tag" style="background:var(--green-dim);color:var(--green)">Yes, with guardrails</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--green)">What Jee Covers Remotely</h3>
+        <ul style="list-style:none;font-size:14px">
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Content strategy + production (3-5 posts/wk + newsletter)</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Brand voice system + editorial calendar</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Email flow copywriting + campaign mgmt</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Social media management (scheduled posts, stories)</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">DM/comment triage (AI-assisted response drafting)</li>
+          <li style="padding:6px 0">Founding member communications</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--red)">What Needs On-The-Ground (Eventually)</h3>
+        <ul style="list-style:none;font-size:14px">
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Real-time social from Austin events/activations</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">In-person founding member meetups</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">Local influencer/partner relationships</li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--border)">On-site event coordination</li>
+          <li style="padding:6px 0">Walk-in community interactions at venue</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Hire Trigger Points</h3>
+      <div class="trigger"><div class="trigger-icon">1</div><div class="trigger-text"><div class="when">Founding members > 200</div><div class="why">Community volume exceeds remote capacity &mdash; Post-Drop 1 (May-June)</div></div></div>
+      <div class="trigger"><div class="trigger-icon">2</div><div class="trigger-text"><div class="when">Weekly Austin activations begin</div><div class="why">Need boots on ground for content + relationships &mdash; Summer 2026</div></div></div>
+      <div class="trigger"><div class="trigger-icon">3</div><div class="trigger-text"><div class="when">Construction site becomes visitable</div><div class="why">In-person member experiences require local presence &mdash; Fall 2026</div></div></div>
+    </div>
+
+    <div class="talking-point">Jee can run Phase 1 remotely &mdash; content, community, email, social. The AI layer handles workflow overhead. When you hit 200+ founding members or start Austin activations, that's when a local community manager becomes essential.</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- TICKETING PLATFORMS -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--blue-dim);color:var(--blue)">6</div>
+      <h2>Ticketing Platform Options</h2>
+      <span class="tag" style="background:var(--blue-dim);color:var(--blue)">New scope</span>
+    </div>
+
+    <div class="card">
+      <h3>Submersive's 4 Booking Needs</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Need</th><th>Description</th><th>Challenge</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Memberships</strong></td><td>Recurring billing, perks, priority access</td><td>Must own the CRM relationship</td></tr>
+            <tr><td><strong>Day Passes</strong></td><td>Timed entry, walk-up + online, capacity mgmt</td><td>Real-time zone-level capacity</td></tr>
+            <tr><td><strong>Events</strong></td><td>Sound baths, DJ nights, collaborations</td><td>Overlay on regular operations</td></tr>
+            <tr><td><strong>Discovery</strong></td><td>Reaching new audiences at scale</td><td>Marketing reach vs. data ownership</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Platform Landscape</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+        <div class="platform-card card recommended" style="margin:0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div class="name">ROLLER</div><div class="use">Attractions + memberships + timed entry + POS</div></div>
+            <span class="tag" style="background:var(--green-dim);color:var(--green)">Recommended</span>
+          </div>
+          <div class="detail">Purpose-built for venues like Submersive. Handles memberships, timed entry, capacity by zone, POS, waivers. You own the guest relationship.</div>
+        </div>
+        <div class="platform-card card recommended" style="margin:0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div class="name">Fever</div><div class="use">Discovery marketplace + GA ticketing</div></div>
+            <span class="tag" style="background:var(--accent-dim);color:var(--accent)">Distribution</span>
+          </div>
+          <div class="detail">200M+ user base for discovery. Sells INTO your capacity system. Handles general admission only. Founding memberships must NOT live here.</div>
+        </div>
+        <div class="platform-card card neutral" style="margin:0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div class="name">Mindbody</div><div class="use">Wellness/fitness booking + business mgmt</div></div>
+            <span class="tag" style="background:var(--blue-dim);color:var(--blue)">Alternative</span>
+          </div>
+          <div class="detail">If wellness/spa framing matters more than attraction framing. Handles memberships, scheduling, POS. Consumer marketplace. $99-399+/mo.</div>
+        </div>
+        <div class="platform-card card not-rec" style="margin:0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><div class="name">Tock / Eventbrite / DICE</div><div class="use">Various</div></div>
+            <span class="tag" style="background:var(--red-dim);color:var(--red)">Not recommended</span>
+          </div>
+          <div class="detail">Tock: restaurant DNA, no memberships. Eventbrite: mass-market brand, high fees. DICE: now owned by Fever (redundant).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recommended: Layered Architecture</h3>
+      <div class="layer layer-1">
+        <div class="layer-label">Layer 1 &mdash; Operations (You Own This)</div>
+        <div style="font-size:14px"><strong>ROLLER</strong> or <strong>Mindbody</strong> &mdash; Memberships, day passes, capacity management, POS, guest data. This is YOUR system.</div>
+      </div>
+      <div class="layer layer-2">
+        <div class="layer-label">Layer 2 &mdash; Distribution (Fever)</div>
+        <div style="font-size:14px"><strong>Fever</strong> sells INTO Layer 1 capacity. Drives discovery with 200M+ users. GA ticketing only. Founding memberships stay on Layer 1.</div>
+      </div>
+      <div class="layer layer-3">
+        <div class="layer-label">Layer 3 &mdash; Events (Flexible)</div>
+        <div style="font-size:14px">Special programming runs through Layer 1 system or Fever depending on scale. No need for a third platform.</div>
+      </div>
+    </div>
+
+    <div class="warning">
+      <div class="title">Critical Contract Point with Fever</div>
+      <p>Submersive MUST retain guest data and email for all Fever-sold tickets. If Fever owns the customer relationship, Submersive becomes a venue-for-hire on its own property. Negotiate co-ownership or full ownership of customer data.</p>
+    </div>
+
+    <div class="talking-point">We'd recommend a layered approach &mdash; one platform you own for memberships and operations, with Fever as a marketing channel feeding into your capacity. The founding membership relationship should never live inside Fever.</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- REVENUE MODEL -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--accent-dim);color:var(--accent)">7</div>
+      <h2>Pre-Opening Revenue Model</h2>
+    </div>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Drop</th><th>Timing</th><th>Price</th><th>Deposit</th><th>Cap</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Drop 1</strong></td><td>Mid-April 2026</td><td>$299/yr</td><td>$100</td><td>1,000</td><td>$77K</td></tr>
+            <tr><td><strong>Drop 2</strong></td><td>July 2026</td><td>$349/yr</td><td>$125</td><td>1,000</td><td>$95K</td></tr>
+            <tr><td><strong>Drop 3</strong></td><td>Sept 2026</td><td>$399/yr</td><td>$150</td><td>1,000</td><td>$140K</td></tr>
+            <tr><td>Q1 2027 Pre-sale</td><td>Q1 2027</td><td>$449/yr</td><td>&mdash;</td><td>500 new</td><td>$781K</td></tr>
+            <tr><td>Soft Launch</td><td>Q1 2027</td><td>$88/day</td><td>&mdash;</td><td>141/day x 20d</td><td>$187K</td></tr>
+            <tr><td>Grand Opening</td><td>Q1 2027</td><td>$120/day</td><td>&mdash;</td><td>707/day x 7d</td><td>$445K</td></tr>
+            <tr class="highlight-row"><td colspan="5"><strong>Total Pre-Opening Revenue</strong></td><td><strong>$1.725M</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:12px;text-align:center">Full price post-launch: $499/yr &bull; 10-year base case: $1.4M&ndash;$3.5M annual membership revenue</p>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- OPEN QUESTIONS -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--red-dim);color:var(--red)">8</div>
+      <h2>Open Questions for the Call</h2>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:24px;height:24px;border-radius:6px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">1</div>
+          <div><strong>Equity / rev-share structure</strong> &mdash; What form works? (Equity %, rev-share on membership revenue, performance bonus?)</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:24px;height:24px;border-radius:6px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">2</div>
+          <div><strong>Presale date precision</strong> &mdash; Is mid-April firm, or flexibility to April 21-28 if infrastructure needs it?</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:24px;height:24px;border-radius:6px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">3</div>
+          <div><strong>Fever relationship scope</strong> &mdash; What's already committed? What's negotiable? Do they handle founding memberships or only GA?</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:24px;height:24px;border-radius:6px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">4</div>
+          <div><strong>Waitlist creative</strong> &mdash; Does Submersive have LP creative/copy, or is that part of our sprint?</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:24px;height:24px;border-radius:6px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">5</div>
+          <div><strong>Corvas availability for SEED content</strong> &mdash; How available for founder-voice content? (Critical for presale authenticity)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- AGENDA -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--green-dim);color:var(--green)">9</div>
+      <h2>Suggested Call Agenda</h2>
+    </div>
+
+    <div class="card">
+      <div class="agenda-item">
+        <div class="agenda-time">0-5 min</div>
+        <div><div class="agenda-topic">Quick check-in, confirm goals</div><div class="agenda-lead">Kam</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">5-15 min</div>
+        <div><div class="agenda-topic">ROM walkthrough &mdash; Amuse allocation within $100-150K</div><div class="agenda-lead">Kam</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">15-20 min</div>
+        <div><div class="agenda-topic">Presale timeline + infrastructure readiness</div><div class="agenda-lead">Kam</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">20-25 min</div>
+        <div><div class="agenda-topic">Community manager question + Jee's Phase 1 coverage</div><div class="agenda-lead">Jee</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">25-35 min</div>
+        <div><div class="agenda-topic">Ticketing platform perspective (layered approach)</div><div class="agenda-lead">Kam</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">35-40 min</div>
+        <div><div class="agenda-topic">Open questions + equity / rev-share</div><div class="agenda-lead">Kam + Chris</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-time">40-45 min</div>
+        <div><div class="agenda-topic">Next steps: sprint kickoff date, action items</div><div class="agenda-lead">All</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- INTERNAL NOTES -->
+  <!-- ============================================ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon" style="background:var(--red-dim);color:var(--red)">!</div>
+      <h2>Internal Notes</h2>
+      <span class="internal-badge">Kam + Jee Only</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--red)">Watch For</h3>
+        <ul style="list-style:none;font-size:13px">
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">If equity/rev-share gets pushback &rarr; Plan B: reduced scope that fits cash-only within $50-70K</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">If mid-April is truly firm, sprint MUST start Monday &mdash; no room for delay</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">$1.725M revenue target vs $100-150K budget &mdash; make sure Chris understands the infrastructure that target requires</li>
+          <li style="padding:8px 0">Fever acquired DICE (June 2025) &mdash; ticketing landscape may shift</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--green)">Our Leverage</h3>
+        <ul style="list-style:none;font-size:13px">
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">$0 marketing spend = organic demand validates lean-start-then-scale strategy</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">Partner/buy approach means our sprint delivers faster value</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">Only team that brings strategy (Jee) AND tech infrastructure (Kam) in one engagement</li>
+          <li style="padding:8px 0">AI layer is a genuine differentiator &mdash; no other agency offers this for a venue launch</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

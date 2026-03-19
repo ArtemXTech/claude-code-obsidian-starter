@@ -36,7 +36,7 @@ Items written to `{Workspace}/Inbox/` as markdown files:
 | Slack (Avitia) | Slack MCP `slack_read_channel` | 1a |
 | Calendar | M365 MCP `outlook_calendar_search` | 1a |
 | Read.ai digests | M365 MCP (email, special parser) | 1b |
-| Slack (Amuse) | Slack MCP | Future |
+| Slack (Amuse) | Slack MCP `slack_read_channel` | 1a |
 
 ## Integration Points
 

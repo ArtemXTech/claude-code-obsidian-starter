@@ -14,7 +14,7 @@ Pull data from all connected sources into workspace Inbox/ folders.
 routing:
   slack:
     avitiabio: Avitia
-    # amuse: Amuse  # FUTURE — requires second Slack MCP connection
+    amuse: Amuse
   email:
     domain_map:
       "@avitia.bio": Avitia
@@ -61,8 +61,12 @@ slack:
       - "#random"
       - "#general"
       - "#careers"
-  # amuse:
-  #   channels: []  # FUTURE — TBD when connected
+  amuse:
+    channels:
+      - "#amusementpark"
+    exclude:
+      - "#random"
+      - "#general"
 ```
 
 ## Stage 0: Determine scan window

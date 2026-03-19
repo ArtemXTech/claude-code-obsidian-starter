@@ -311,11 +311,14 @@ Report what was ingested:
 |--------|------------|----------------|-----------------|-----------|
 | Email | X | Y | Z | Amuse: A, Avitia: B, Unrouted: C |
 | Slack (avitiabio) | X | Y | Z | Avitia |
+| Slack (amuse) | X | Y | Z | Amuse |
 | Calendar | X | Y | Z | Mixed |
+
+Only include Slack rows for workspaces that were actually detected and ingested. Omit rows for undetected workspaces.
 
 Signals for existing tasks: N items matched open tasks (not captured)
 Archived: N old items moved to archive/
 
-{If any source had null timestamp: "First run for {source} — capped at 5 items. Run again to catch remaining."}
+{If any source had null/missing timestamp: "First run for {source} — capped at 5 items. Run again to catch remaining."}
 {If any source skipped: "Skipped: {source} — {reason}"}
 ```

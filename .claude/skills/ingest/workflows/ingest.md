@@ -136,8 +136,11 @@ For each surviving item, run dedup (Stage 4), then write using template.
 
 ## Stage 2: Slack Ingestion
 
-### 2a. Detect connected workspace
+### 2a. Detect connected Slack workspaces
 
+Run two probes to determine which Slack workspace(s) are reachable:
+
+**Probe 1 (Avitia):**
 ```
 Tool: mcp__claude_ai_Slack__slack_search_channels
 Parameters:
@@ -146,7 +149,22 @@ Parameters:
   limit: 5
 ```
 
-Check if results contain known Avitia channels (`#bizdev`, `#product-development`). If yes: connected to avitiabio. If no known channels found: report "Unknown Slack workspace — skipping Slack ingestion."
+If results contain `#bizdev` or other known avitiabio channels → add `"avitiabio"` to `connected_slacks`.
+
+**Probe 2 (Amuse):**
+```
+Tool: mcp__claude_ai_Slack__slack_search_channels
+Parameters:
+  query: "amusementpark"
+  channel_types: "public_channel,private_channel"
+  limit: 5
+```
+
+If results contain `#amusementpark` → add `"amuse"` to `connected_slacks`.
+
+If `connected_slacks` is empty: report "No Slack workspace detected — skipping Slack ingestion." and proceed to Stage 3.
+
+If both are detected (future multi-workspace MCP): ingest both.
 
 ### 2b. Read configured channels
 

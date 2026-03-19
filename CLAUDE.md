@@ -40,6 +40,9 @@
 
 - `/setup-memory` - Build your personalized CLAUDE.md
 - `"morning routine"` - Start your day
+- `"daily ops"` - Intelligent cross-source triage
+- `"pull updates"` - Ingest from email, Slack, calendar
+- `"what's emerging"` - Think across accumulated data
 - `"get my projects"` - See all projects
 - `"who needs follow-up?"` - Check clients
 - `"sync my meetings"` - Sync Granola meetings to vault

@@ -168,7 +168,9 @@ If both are detected (future multi-workspace MCP): ingest both.
 
 ### 2b. Read configured channels
 
-For each channel in the avitiabio config (see Slack channel list in routing config above):
+For each workspace in `connected_slacks`, read the channel list from the matching config block above.
+
+For each channel in that workspace's config:
 
 ```
 Tool: mcp__claude_ai_Slack__slack_read_channel
@@ -177,6 +179,8 @@ Parameters:
   limit: 50
   oldest: "{scan_window_start_unix_timestamp}"
 ```
+
+Use the scan window from `sources.slack_{workspace_key}` in the state file. If the key is missing or `null`, use 48 hours ago and apply a 5-item cap.
 
 ### 2c. Filter and classify messages
 
@@ -189,7 +193,12 @@ For each channel's messages:
 
 ### 2d. Write inbox items
 
-For each surviving item, run dedup (Stage 4), then write to `Avitia/Inbox/` using template.
+For each surviving item, run dedup (Stage 4), then write to the workspace's `Inbox/` folder:
+
+- Messages from avitiabio → `Avitia/Inbox/`
+- Messages from amuse → `Amuse/Inbox/`
+
+Routing is implicit from workspace detection — no keyword matching needed for Slack.
 
 **source_id format:** `slack:{channelId}:{threadTs}` (or `messageTs` for non-threaded)
 

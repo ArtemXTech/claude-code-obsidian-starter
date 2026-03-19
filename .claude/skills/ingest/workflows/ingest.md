@@ -292,10 +292,13 @@ Update `.claude/skills/ingest/state.json` — only update timestamps for sources
   "sources": {
     "email": "{now or previous value if skipped}",
     "slack_avitiabio": "{now or previous value if skipped}",
+    "slack_amuse": "{now or previous value if skipped}",
     "calendar": "{now or previous value if skipped}"
   }
 }
 ```
+
+If a source key is missing from the state file (e.g., `slack_amuse` on first run from a new account), treat it identically to `null` — use 48-hour lookback with 5-item cap.
 
 ## Stage 8: Summary
 

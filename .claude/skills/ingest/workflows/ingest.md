@@ -4,8 +4,10 @@ Pull data from all connected sources into workspace Inbox/ folders.
 
 ## Prerequisites
 
-- M365 MCP connector must be available (for email + calendar)
+- M365 MCP connector must be available (for Outlook email + calendar)
 - Slack MCP connector must be available (for Slack channels)
+- Gmail reader script at `.claude/scripts/gmail-reader.py` with venv at `~/.config/google-tokens/venv/`
+- OAuth tokens in `~/.config/google-tokens/` for each configured Gmail account
 - If any source is unreachable, skip it gracefully and report
 
 ## Routing Configuration
@@ -45,6 +47,14 @@ routing:
         - "corvas"
     # Matching order: email domain first, then display name fallback
     cross_workspace: duplicate
+  gmail:
+    account_map:
+      k-at-amuse-us: Amuse
+      kkafimd-at-gmail-com: Medical
+      vizucla-at-gmail-com: Personal
+    sender_overrides:
+      # Sender overrides take priority over account_map
+      "noreply.business@bell.ca": Amuse
   fallback: Inbox/
 
 slack:
@@ -133,6 +143,53 @@ Skip entirely:
 For each surviving item, run dedup (Stage 4), then write using template.
 
 **source_id format:** `email:{messageId}`
+
+## Stage 1.5: Gmail Ingestion
+
+### 1.5a. Invoke Gmail reader script
+
+For each account in `gmail.account_map`, call the reader script:
+
+```bash
+~/.config/google-tokens/venv/bin/python3 .claude/scripts/gmail-reader.py \
+  --account {account_slug} \
+  --after {scan_window_for_this_account} \
+  --limit 25
+```
+
+Use the scan window from `sources.gmail_{account_slug}` in state.json.
+If the key is missing or `null`, use 48 hours ago and apply the 5-item cap.
+
+If the script exits non-zero or returns an error JSON on stderr, log the failure
+and skip this account. Continue to the next account. Do not abort the entire Gmail stage.
+
+### 1.5b. Parse and route
+
+Parse the JSON array output from stdout. For each message:
+- Look up workspace from `gmail.account_map[account_slug]`
+- Account identity is the routing signal — no domain_map/sender_map/keyword matching needed
+
+### 1.5c. Classify and write
+
+Same classification logic as Stage 1e (Outlook):
+- Classify into: `task | decision | blocker | fyi`
+- Skip newsletters, marketing, automated notifications, calendar RSVPs
+- For each surviving item, run dedup (Stage 4), then write using template
+
+**source_id format:** `gmail:{account_slug}:{messageId}`
+
+This is intentionally distinct from Outlook's `email:{messageId}` to prevent cross-source ID collisions.
+
+**source field:** `gmail` (extends the existing `slack|email|calendar|meeting` set)
+
+### 1.5d. Graceful degradation
+
+| Condition | Behavior |
+|-----------|----------|
+| Script not found | Skip all Gmail, report skipped |
+| Token missing for one account | Skip that account, continue others |
+| API error for one account | Skip that account, continue others |
+| All accounts fail | Report all failures, continue to Stage 2 |
 
 ## Stage 2: Slack Ingestion
 
@@ -254,6 +311,11 @@ grep -rl "source_id: {source_id}" {workspace}/Inbox/ 2>/dev/null
 grep -rl "source_id: outlook:{messageId}" Avitia/Inbox/ 2>/dev/null
 ```
 
+**Check 2b — Gmail source_id match:**
+```bash
+grep -rl "source_id: gmail:{account_slug}:{messageId}" {workspace}/Inbox/ 2>/dev/null
+```
+
 If either check finds a match → skip silently.
 
 **Check 3 — semantic match against existing open tasks:**
@@ -271,6 +333,172 @@ For each item that passes dedup:
 1. Generate filename: `{source}-{YYYY-MM-DD}-{short-slug}.md`
 2. Fill template from `.claude/skills/ingest/templates/inbox-item.md`
 3. Write to `{workspace}/Inbox/`
+
+## Stage 5.5: Calendar Event Detection
+
+After writing inbox items, scan all newly written items for calendar-worthy content.
+
+### Detection criteria
+
+An item is calendar-worthy if ANY of:
+- `category: meeting` in frontmatter
+- Body contains a specific date + time (not just a date)
+- Keywords in subject/body: "meeting", "AGM", "assemblée", "appointment", "call", "webinar", "deadline" combined with a future datetime
+
+### Extraction
+
+For each detected item, extract:
+- **title**: event summary (from subject or body)
+- **start**: datetime (ISO 8601)
+- **end**: datetime (default: start + 1 hour)
+- **location**: physical address, Zoom/Teams link, or "Virtual"
+- **description**: 1-2 sentence context
+
+### Push to Apple Calendar
+
+Use workspace-to-calendar mapping:
+
+```yaml
+calendar_push:
+  Avitia: "kkafi@icdh.com"        # Outlook — work meetings
+  Amuse: "canyou@amuse.us"        # Google — Amuse business
+  Personal: "Kam's Fam Calendar"   # Family, friends, social events
+  Medical: "Home"                  # Physician/community
+```
+
+```bash
+python3 .claude/scripts/ical-writer.py \
+  --calendar "{calendar_from_mapping}" \
+  --title "{title}" \
+  --start "{start}" \
+  --end "{end}" \
+  --location "{location}" \
+  --notes "{description}"
+```
+
+On success, update the inbox item:
+- Set `linked_task: "calendar:ical:{eventUID}"`
+- Add `## 📅 Calendar Event` section with extracted details
+
+### Graceful degradation
+
+If ical-writer.py fails (Calendar.app not responding, calendar not found):
+- Log the error
+- Still write the `## 📅 Calendar Event` section with extracted details (manual fallback)
+- Do NOT block the rest of the pipeline
+
+## Stage 5.6: Auto-Task Promotion (High-Confidence Only)
+
+After writing inbox items, check for HIGH-CONFIDENCE task items that can be auto-promoted without manual triage.
+
+### Auto-promotion criteria (ALL must be high-confidence)
+
+An item qualifies for auto-promotion if ANY of:
+- Has an **explicit deadline** in the email body ("due by March 26", "deadline Thursday", "expires on")
+- Is a **direct ask** to Kam ("please review", "action required", "your input needed", "complete the")
+- Is `category: blocker`
+
+Items that do NOT qualify (stay as `status: new` for manual triage):
+- General FYIs, newsletters, meeting notes without action items
+- Ambiguous asks ("let's discuss", "thoughts?", "FYI")
+- Items without clear ownership or deadline
+
+### Auto-promotion writes (3 layers)
+
+1. **TaskNotes API** (execution layer):
+```bash
+curl -X POST "http://127.0.0.1:8090/api/tasks" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "{task title}",
+    "status": "open",
+    "priority": "normal",
+    "projects": ["[[{Workspace}]]"],
+    "due": "{due date if known}"
+  }'
+```
+If API unreachable, create task file directly in `Tasks/`.
+
+2. **Workspace Tasks.md** (planning layer):
+```markdown
+## Active
+- [ ] {task title} — {one-line context} — @Kam | Due: {date} | Source: `Inbox/{filename}`
+```
+
+3. **Apple Reminders** (phone visibility — ONLY if has due date):
+```bash
+python3 .claude/scripts/reminder-writer.py \
+  --list "{workspace}" \
+  --title "{task title}" \
+  --due "{YYYY-MM-DD}" \
+  --notes "Source: {workspace}/Inbox/{filename}"
+```
+
+Workspace-to-list mapping:
+```yaml
+reminder_push:
+  Avitia: "Avitia"
+  Amuse: "Amuse"
+  Personal: "Personal"
+  Medical: "Medical"
+  fallback: "Inbox"
+```
+
+4. Update inbox item: `status: triaged`, `linked_task: Tasks/{filename}.md`
+
+### Graceful degradation
+
+- TaskNotes API down → create file in Tasks/ directly
+- Reminders.app unresponsive → skip, task still exists in Obsidian
+- Do NOT block the rest of the pipeline for any single layer failure
+
+## Stage 5.7: Reminders Reverse Sync
+
+Read Apple Reminders to sync changes from iPhone back to Obsidian.
+
+### 5.7a: Completed reminders → mark done in Obsidian
+
+```bash
+python3 .claude/scripts/reminder-reader.py --completed --since "{last_reminders_sync}"
+```
+
+For each completed reminder:
+1. Match to Obsidian task:
+   - **ID match**: `grep -rl "reminder_id: \"{reminder_id}\"" Tasks/ */Inbox/`
+   - **Title match** (fallback): fuzzy match title against open tasks in `{list_name}/Tasks.md`
+2. If matched:
+   - TaskNotes: update `status: done` via API or sed
+   - Tasks.md: move from `## Active` to `## Done (this week)` with completion date
+   - Inbox item (if exists): set `status: acted-on`
+3. If no match: log and skip (legacy reminder not from this system)
+
+### 5.7b: New phone-captured reminders → create inbox items
+
+```bash
+python3 .claude/scripts/reminder-reader.py --open --list "Inbox"
+```
+
+For each open reminder in the "Inbox" list:
+1. Check if already exists in Obsidian: `grep -rl "reminder_id: \"{id}\"" */Inbox/`
+2. If new, create inbox item:
+   - Route to vault-root `Inbox/` (workspace TBD during triage)
+   - Set `source: reminders`, `category: task`, `reminder_id: "{id}"`
+   - File: `reminders-{YYYY-MM-DD}-{short-slug}.md`
+3. Present in next triage for workspace assignment
+
+For open reminders in workspace lists (Avitia, Amuse, Personal, Medical):
+1. Check if already in Obsidian by reminder_id
+2. If new (created on phone, not by the system), create inbox item in `{Workspace}/Inbox/`
+
+### 5.7c: Update sync state
+
+Update `sources.reminders` in state.json. First run = look back 7 days.
+
+### Graceful degradation
+
+If Reminders.app is unresponsive or reminder-reader.py fails:
+- Skip this stage entirely
+- Do NOT block email/gmail/slack/calendar ingestion
 
 ## Stage 6: Archive cleanup
 
@@ -291,6 +519,10 @@ Update `.claude/skills/ingest/state.json` — only update timestamps for sources
   "last_run": "{now ISO 8601}",
   "sources": {
     "email": "{now or previous value if skipped}",
+    "gmail_k-at-amuse-us": "{now or previous value if skipped}",
+    "gmail_vizucla-at-gmail-com": "{now or previous value if skipped}",
+    "gmail_kkafimd-at-gmail-com": "{now or previous value if skipped}",
+    "gmail_kam4sale-at-gmail-com": "{now or previous value if skipped}",
     "slack_avitiabio": "{now or previous value if skipped}",
     "slack_amuse": "{now or previous value if skipped}",
     "calendar": "{now or previous value if skipped}"
@@ -309,12 +541,17 @@ Report what was ingested:
 
 | Source | Items Found | Items Captured | Skipped (dedup) | Workspace |
 |--------|------------|----------------|-----------------|-----------|
-| Email | X | Y | Z | Amuse: A, Avitia: B, Unrouted: C |
+| Email (Outlook) | X | Y | Z | Amuse: A, Avitia: B, Unrouted: C |
+| Gmail (k@amuse.us) | X | Y | Z | Amuse |
+| Gmail (vizucla@gmail.com) | X | Y | Z | Inbox |
+| Gmail (kkafimd@gmail.com) | X | Y | Z | Inbox |
+| Gmail (kam4sale@gmail.com) | X | Y | Z | Inbox |
 | Slack (avitiabio) | X | Y | Z | Avitia |
 | Slack (amuse) | X | Y | Z | Amuse |
 | Calendar | X | Y | Z | Mixed |
 
 Only include Slack rows for workspaces that were actually detected and ingested. Omit rows for undetected workspaces.
+Only include Gmail rows for accounts that were actually attempted. If an account's token is missing, note as skipped.
 
 Signals for existing tasks: N items matched open tasks (not captured)
 Archived: N old items moved to archive/

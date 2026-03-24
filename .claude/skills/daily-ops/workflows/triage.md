@@ -113,7 +113,7 @@ Wait for user confirmation before making any changes.
 
 ### Triage Actions
 
-**→ Task** (task promotion — dual-layer write):
+**→ Task** (task promotion — tri-layer write):
 
 1. Create TaskNotes execution task:
 ```bash
@@ -123,19 +123,30 @@ curl -X POST "http://127.0.0.1:8090/api/tasks" \
     "title": "{task title}",
     "status": "open",
     "priority": "normal",
-    "projects": ["[[{Workspace}]]"]
+    "projects": ["[[{Workspace}]]"],
+    "due": "{YYYY-MM-DD if known}"
   }'
 ```
 If API unreachable, create task file directly in `Tasks/`.
 
 2. Append to `{Workspace}/Tasks.md` under `## Active`:
 ```markdown
-- [ ] {task title} — {one-line context} — @Kam | Source: `Inbox/{filename}`
+- [ ] {task title} — {one-line context} — @Kam | Due: {date} | Source: `Inbox/{filename}`
 ```
 
-3. Update inbox item: set `status: triaged`, `linked_task: Tasks/{task-filename}.md`
+3. **Push to Apple Reminders** (only if task has a due date or explicit urgency):
+```bash
+python3 .claude/scripts/reminder-writer.py \
+  --list "{Workspace}" \
+  --title "{task title}" \
+  --due "{YYYY-MM-DD}" \
+  --notes "Source: {Workspace}/Inbox/{filename}"
+```
+Workspace-to-list: Avitia→"Avitia", Amuse→"Amuse", Personal→"Personal", Medical→"Medical"
 
-4. Check `{Workspace}/Handoff.md` — if the task appears as an action item, check it off:
+4. Update inbox item: set `status: triaged`, `linked_task: Tasks/{task-filename}.md`
+
+5. Check `{Workspace}/Handoff.md` — if the task appears as an action item, check it off:
 ```bash
 grep -n "{task title keywords}" {Workspace}/Handoff.md
 # If found as "- [ ]", change to "- [x]"
@@ -158,11 +169,47 @@ grep -n "{task title keywords}" {Workspace}/Handoff.md
 **→ FYI:**
 Update inbox item: set `status: triaged`
 
+**→ Calendar:**
+
+1. Extract date, time, location, and key details from the inbox item body
+2. Present calendar event summary for user confirmation:
+   - What, When, Where, Action needed
+3. Determine target calendar from workspace mapping:
+   - Avitia → `kkafi@icdh.com`, Amuse → `canyou@amuse.us`
+   - Personal → `Kam's Fam Calendar`, Medical → `Home`
+4. On user confirmation, push to Apple Calendar:
+```bash
+python3 .claude/scripts/ical-writer.py \
+  --calendar "{target_calendar}" \
+  --title "{title}" --start "{start}" --end "{end}" \
+  --location "{location}" --notes "{description}"
+```
+5. Update inbox item: add `## 📅 Calendar Event` section, set `linked_task: "calendar:ical:{eventUID}"`
+6. Set `status: triaged`
+7. If ical-writer fails, fall back to manual — extract details in inbox item for user to add
+
 **→ Dismiss:**
 Update inbox item: set `status: acted-on`
 
 **→ Relate:**
 Add wikilink to `related:` field in inbox item frontmatter. Keep `status: new`.
+
+### Financial tagging
+
+When triaging items that are bills, insurance notices, pay stubs, receipts, or tax-relevant documents, set the `financial_type` field:
+
+```yaml
+financial_type: "utility|insurance|payroll|tax|expense|receipt"
+```
+
+This enables retrieval via `grep -rl "financial_type:"` for tax season and financing applications.
+
+### Cross-workspace rerouting
+
+If an item landed in the wrong workspace (e.g., Bell Business bill via vizucla → Personal, but it's an Amuse expense):
+1. Move the file to the correct `{Workspace}/Inbox/`
+2. Update `workspace:` in frontmatter
+3. Add the sender to `sender_overrides` in ingest routing config to prevent recurrence
 
 ## Step 6: Summary
 
@@ -170,8 +217,10 @@ Add wikilink to `related:` field in inbox item frontmatter. Keep `status: new`.
 Triage complete:
 - {N} items → Task (created in TaskNotes + {Workspace}/Tasks.md)
 - {N} items → Decision (appended to Decisions.md)
+- {N} items → Calendar (details extracted)
 - {N} items → FYI
 - {N} items → Dismissed
 - {N} items → Related (still pending)
 - {N} items remaining as new
+- {N} items rerouted to different workspace
 ```

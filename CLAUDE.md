@@ -11,6 +11,7 @@
 ├── Meetings/       # Synced meetings from Granola
 ├── Claude-Sessions/# Cross-workspace session index
 ├── Bases/          # Obsidian Bases (structured data views)
+├── Infrastructure/ # Claude Code system docs (MCP, hooks, troubleshooting)
 ├── Notes/          # Assets and references
 ├── guide/          # Documentation assets
 └── .claude/skills/ # Claude Code skills

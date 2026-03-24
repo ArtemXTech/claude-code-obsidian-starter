@@ -1,12 +1,41 @@
 ---
 type: decisions
 workspace: "[[Avitia]]"
-last_updated: 2026-03-12
+last_updated: 2026-03-19
 ---
 
 # Avitia Decisions
 
 > Key architectural and strategy decisions. Newest first.
+
+---
+
+### 2026-03-20 — CDL Partnership Stopped — Pivoting to Biron / Dynacare
+
+- **Decision:** CDL partnership stopped — Pierre pivoting to Biron and Dynacare as alternatives. James: "no further work with them, discuss approach Tuesday."
+- **Rationale:** CDL unable to prioritize the liquid biopsy collaboration until June; strategic pivot to alternative lab partners.
+- **Decided by:** James Lumsdaine / Pierre Couture
+- **Status:** Active
+- **Reference:** Email thread "CDL Update — pivot to Biron and Dynacare" (Mar 19-20)
+
+---
+
+### 2026-03-18 — LIMS De-Identification Approved
+
+- **Decision:** LIMS data will be de-identified by removing patient name, health ID, and DOB while retaining all other data (including age) for operational use. Proceeding as proposed.
+- **Rationale:** Balances privacy compliance with data utility — retains enough info for lab operations and retrospective analysis without PII.
+- **Decided by:** James Lumsdaine (proposed by Jerian Reynolds, confirmed Mar 13-18 email thread)
+- **Follow-up:** Jerian/Dmitri to execute de-identification.
+- **Reference:** Email thread "LIMS Purging Update" (Mar 13-18)
+
+---
+
+### 2026-03-16 — Eli's Proposal Approved (Mauricio + Dmitri Implementing)
+
+- **Decision:** Team supportive of Eli Vlahos's proposal. Mauricio and Dmitri are implementing.
+- **Rationale:** James confirmed team alignment.
+- **Decided by:** James Lumsdaine
+- **Reference:** Email thread "Re: !" (Mar 16)
 
 ---
 

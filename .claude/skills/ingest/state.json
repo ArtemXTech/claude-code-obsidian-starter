@@ -1,9 +1,13 @@
 {
-  "last_run": null,
+  "last_run": "2026-03-24T19:00:00Z",
   "sources": {
-    "email": null,
-    "slack_avitiabio": null,
-    "slack_amuse": null,
-    "calendar": null
+    "email": "2026-03-24T19:00:00Z",
+    "gmail_k-at-amuse-us": "2026-03-24T19:00:00Z",
+    "gmail_kkafimd-at-gmail-com": "2026-03-24T19:00:00Z",
+    "gmail_vizucla-at-gmail-com": "2026-03-24T19:00:00Z",
+    "slack_avitiabio": "2026-03-23T16:41:00Z",
+    "slack_amuse": "2026-03-23T23:00:00Z",
+    "calendar": "2026-03-24T19:00:00Z",
+    "reminders": "2026-03-24T19:00:00Z"
   }
 }

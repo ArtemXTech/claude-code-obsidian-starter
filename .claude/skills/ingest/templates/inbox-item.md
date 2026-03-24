@@ -1,7 +1,7 @@
 ---
 type: inbox-item
-source: {slack|email|calendar|meeting}
-workspace: {Amuse|Avitia}
+source: {slack|email|gmail|calendar|meeting|reminders}
+workspace: {Amuse|Avitia|Medical|Personal}
 source_id: "{source}:{id}"
 channel: "{#channel-name}"
 category: {task|decision|blocker|fyi|meeting}
@@ -10,6 +10,8 @@ from: "{sender/author name}"
 subject: "{subject or thread topic}"
 status: new
 linked_task: ""
+reminder_id: ""
+financial_type: ""
 related: []
 ---
 
